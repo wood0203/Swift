@@ -1,5 +1,37 @@
 import UIKit
 import CoreLocation
+import MapKit
+
+//class SearchViewController: UIViewController {
+//    var RescueList : [[String]] = []
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        self.loadFromCSV()
+//    }
+//
+//    private func parseCSVAt(url: URL) {
+//        do {
+//            let data = try Data(contentsOf: url)
+//            let dataEncoded = String(data: data, encoding: .utf8)
+//            if let dataArr = dataEncoded?.components(separatedBy: "\n").map({$0.components(separatedBy: ",")}) {
+//                for item in dataArr {
+//                    RescueList.append(item)
+//                }
+//            }
+//
+//        } catch {
+//            print("Error reading CSV file")
+//        }
+//    }
+//
+//    private func loadFromCSV() {
+//        let path = Bundle.main.path(forResource: "Kangwondo_Rescue2", ofType: "csv")!
+//        parseCSVAt(url: URL(fileURLWithPath: path))
+//    }
+//
+//}
+
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var LocatinFinder: UIButton!

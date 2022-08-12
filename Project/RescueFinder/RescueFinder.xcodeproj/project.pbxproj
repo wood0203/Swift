@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6360DC3428A626C4003DE5BD /* Kangwondo_rescue.csv in Resources */ = {isa = PBXBuildFile; fileRef = 6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */; };
+		6360DC3628A63357003DE5BD /* Launch Screen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */; };
 		63D3AB4628A4D051005D6631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4528A4D051005D6631 /* AppDelegate.swift */; };
 		63D3AB4828A4D051005D6631 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4728A4D051005D6631 /* SceneDelegate.swift */; };
 		63D3AB4A28A4D051005D6631 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4928A4D051005D6631 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Kangwondo_rescue.csv; path = ../../../../../../Downloads/Kangwondo_rescue.csv; sourceTree = "<group>"; };
+		6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen2.storyboard"; sourceTree = "<group>"; };
 		63D3AB4228A4D051005D6631 /* RescueFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D3AB4528A4D051005D6631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D3AB4728A4D051005D6631 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,10 +63,12 @@
 				63D3AB4528A4D051005D6631 /* AppDelegate.swift */,
 				63D3AB4728A4D051005D6631 /* SceneDelegate.swift */,
 				63D3AB4928A4D051005D6631 /* ViewController.swift */,
+				6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */,
 				63D3AB4B28A4D051005D6631 /* Main.storyboard */,
 				63D3AB4E28A4D053005D6631 /* Assets.xcassets */,
 				63D3AB5028A4D053005D6631 /* LaunchScreen.storyboard */,
 				63D3AB5328A4D053005D6631 /* Info.plist */,
+				6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */,
 			);
 			path = RescueFinder;
 			sourceTree = "<group>";
@@ -125,9 +131,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6360DC3428A626C4003DE5BD /* Kangwondo_rescue.csv in Resources */,
 				63D3AB5228A4D053005D6631 /* LaunchScreen.storyboard in Resources */,
 				63D3AB4F28A4D053005D6631 /* Assets.xcassets in Resources */,
 				63D3AB4D28A4D051005D6631 /* Main.storyboard in Resources */,
+				6360DC3628A63357003DE5BD /* Launch Screen2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,8 +297,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱을 열 때마다 위치주소 가져오기 허용";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen2";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -317,8 +326,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱을 열 때마다 위치주소 가져오기 허용";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen2";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
