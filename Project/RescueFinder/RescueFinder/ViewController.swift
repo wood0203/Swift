@@ -34,7 +34,11 @@ import MapKit
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-    @IBOutlet var LocatinFinder: UIButton!
+    
+    @IBOutlet var FinderBtn: UIButton!
+    
+    @IBAction func FinderBtnAction(_ sender: Any) {
+    }
     
     var locationManager = CLLocationManager()
     
