@@ -9,25 +9,29 @@
 /* Begin PBXBuildFile section */
 		6360DC3428A626C4003DE5BD /* Kangwondo_rescue.csv in Resources */ = {isa = PBXBuildFile; fileRef = 6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */; };
 		6360DC3628A63357003DE5BD /* Launch Screen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */; };
+		63A8B60628AB4A9E00C12F4E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8B60528AB4A9E00C12F4E /* SecondViewController.swift */; };
 		63D3AB4628A4D051005D6631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4528A4D051005D6631 /* AppDelegate.swift */; };
 		63D3AB4828A4D051005D6631 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4728A4D051005D6631 /* SceneDelegate.swift */; };
 		63D3AB4A28A4D051005D6631 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D3AB4928A4D051005D6631 /* ViewController.swift */; };
 		63D3AB4D28A4D051005D6631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D3AB4B28A4D051005D6631 /* Main.storyboard */; };
 		63D3AB4F28A4D053005D6631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D3AB4E28A4D053005D6631 /* Assets.xcassets */; };
-		63D3AB5228A4D053005D6631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D3AB5028A4D053005D6631 /* LaunchScreen.storyboard */; };
+		B1942CB04474443BC1C77EC1 /* libPods-RescueFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8561A0BDCEAAD47DA79E09FC /* libPods-RescueFinder.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AEE391085F5DC95B56D1C79 /* Pods-RescueFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RescueFinder.release.xcconfig"; path = "Target Support Files/Pods-RescueFinder/Pods-RescueFinder.release.xcconfig"; sourceTree = "<group>"; };
 		6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Kangwondo_rescue.csv; path = ../../../../../../Downloads/Kangwondo_rescue.csv; sourceTree = "<group>"; };
 		6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen2.storyboard"; sourceTree = "<group>"; };
+		63A8B60528AB4A9E00C12F4E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		63D3AB4228A4D051005D6631 /* RescueFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D3AB4528A4D051005D6631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D3AB4728A4D051005D6631 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		63D3AB4928A4D051005D6631 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63D3AB4C28A4D051005D6631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63D3AB4E28A4D053005D6631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		63D3AB5128A4D053005D6631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63D3AB5328A4D053005D6631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8561A0BDCEAAD47DA79E09FC /* libPods-RescueFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RescueFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E453D7AE02F6452B286BE49 /* Pods-RescueFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RescueFinder.debug.xcconfig"; path = "Target Support Files/Pods-RescueFinder/Pods-RescueFinder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1942CB04474443BC1C77EC1 /* libPods-RescueFinder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				63D3AB4428A4D051005D6631 /* RescueFinder */,
 				63D3AB4328A4D051005D6631 /* Products */,
+				AB6E281A124BD34F161AA9AA /* Pods */,
+				FEEA504B6CF4D0953D0CCAE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,14 +70,31 @@
 				63D3AB4528A4D051005D6631 /* AppDelegate.swift */,
 				63D3AB4728A4D051005D6631 /* SceneDelegate.swift */,
 				63D3AB4928A4D051005D6631 /* ViewController.swift */,
+				63A8B60528AB4A9E00C12F4E /* SecondViewController.swift */,
 				6360DC3528A63357003DE5BD /* Launch Screen2.storyboard */,
 				63D3AB4B28A4D051005D6631 /* Main.storyboard */,
 				63D3AB4E28A4D053005D6631 /* Assets.xcassets */,
-				63D3AB5028A4D053005D6631 /* LaunchScreen.storyboard */,
 				63D3AB5328A4D053005D6631 /* Info.plist */,
 				6360DC3328A626C4003DE5BD /* Kangwondo_rescue.csv */,
 			);
 			path = RescueFinder;
+			sourceTree = "<group>";
+		};
+		AB6E281A124BD34F161AA9AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E453D7AE02F6452B286BE49 /* Pods-RescueFinder.debug.xcconfig */,
+				0AEE391085F5DC95B56D1C79 /* Pods-RescueFinder.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FEEA504B6CF4D0953D0CCAE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8561A0BDCEAAD47DA79E09FC /* libPods-RescueFinder.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63D3AB5628A4D053005D6631 /* Build configuration list for PBXNativeTarget "RescueFinder" */;
 			buildPhases = (
+				61D3506A93FB49084DF93DC7 /* [CP] Check Pods Manifest.lock */,
 				63D3AB3E28A4D051005D6631 /* Sources */,
 				63D3AB3F28A4D051005D6631 /* Frameworks */,
 				63D3AB4028A4D051005D6631 /* Resources */,
+				52297E13A13972F3A24FFE78 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,7 +158,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6360DC3428A626C4003DE5BD /* Kangwondo_rescue.csv in Resources */,
-				63D3AB5228A4D053005D6631 /* LaunchScreen.storyboard in Resources */,
 				63D3AB4F28A4D053005D6631 /* Assets.xcassets in Resources */,
 				63D3AB4D28A4D051005D6631 /* Main.storyboard in Resources */,
 				6360DC3628A63357003DE5BD /* Launch Screen2.storyboard in Resources */,
@@ -141,11 +166,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		52297E13A13972F3A24FFE78 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RescueFinder/Pods-RescueFinder-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RescueFinder/Pods-RescueFinder-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RescueFinder/Pods-RescueFinder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61D3506A93FB49084DF93DC7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RescueFinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		63D3AB3E28A4D051005D6631 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A8B60628AB4A9E00C12F4E /* SecondViewController.swift in Sources */,
 				63D3AB4A28A4D051005D6631 /* ViewController.swift in Sources */,
 				63D3AB4628A4D051005D6631 /* AppDelegate.swift in Sources */,
 				63D3AB4828A4D051005D6631 /* SceneDelegate.swift in Sources */,
@@ -161,14 +229,6 @@
 				63D3AB4C28A4D051005D6631 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		63D3AB5028A4D053005D6631 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63D3AB5128A4D053005D6631 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -290,6 +350,7 @@
 		};
 		63D3AB5728A4D053005D6631 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E453D7AE02F6452B286BE49 /* Pods-RescueFinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -319,6 +380,7 @@
 		};
 		63D3AB5828A4D053005D6631 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AEE391085F5DC95B56D1C79 /* Pods-RescueFinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

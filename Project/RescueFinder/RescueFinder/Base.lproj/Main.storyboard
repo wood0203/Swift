@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="3xo-rg-QI9">
             <objects>
-                <viewController id="EvZ-td-E2o" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondVC" id="EvZ-td-E2o" customClass="SecondViewController" customModule="RescueFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vdi-sP-5XK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,21 +20,66 @@
                                 <rect key="frame" x="20" y="151" width="374" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKS-bD-vLM">
-                                <rect key="frame" x="20" y="718" width="137" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjZ-U7-pX8">
+                                <rect key="frame" x="142" y="745" width="131" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="길안내 시작"/>
+                                <connections>
+                                    <action selector="Navigation:" destination="fVO-So-7Uk" eventType="touchUpInside" id="9il-3M-eOk"/>
+                                    <action selector="Navigation:" destination="EvZ-td-E2o" eventType="touchUpInside" id="v1z-aL-XA0"/>
+                                    <segue destination="oRQ-3K-pLS" kind="presentation" id="FGV-Rm-Hba"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KKQ-O2-8XC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="Map1" destination="KWo-5i-vS9" id="1BA-P1-aJj"/>
+                        <outlet property="NavigationBtn" destination="UjZ-U7-pX8" id="LPj-e8-61k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1l-Sp-keW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fVO-So-7Uk" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1631.8840579710147" y="93.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tPa-TQ-HgN">
+            <objects>
+                <viewController storyboardIdentifier="ThirdVC" id="oRQ-3K-pLS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pHE-CU-bWz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="병원 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yg2-pz-6As">
+                                <rect key="frame" x="186" y="75" width="64" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbA-wA-cyN">
+                                <rect key="frame" x="180" y="330" width="56" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="Back:" destination="UpU-XI-N63" eventType="touchUpInside" id="MOk-lS-CsG"/>
+                                    <action selector="ba:" destination="UpU-XI-N63" eventType="touchUpInside" id="x8P-0Y-h7L"/>
+                                    <segue destination="UpU-XI-N63" kind="unwind" unwindAction="Back:" id="Ujx-2R-VaQ"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="KKQ-O2-8XC"/>
+                        <viewLayoutGuide key="safeArea" id="Ix3-Lq-N9S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u1l-Sp-keW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-ij-cAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="UpU-XI-N63" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="721.73913043478262" y="93.75"/>
+            <point key="canvasLocation" x="2357.971014492754" y="93.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -51,22 +96,21 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="FinderBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ks5-b2-cCH"/>
-                                    <action selector="FindingOn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1BI-iU-kft"/>
-                                    <segue destination="EvZ-td-E2o" kind="presentation" id="pYi-lg-k9T"/>
+                                    <segue destination="EvZ-td-E2o" kind="presentation" id="Up3-IB-lxN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="mx0-Mb-GVY"/>
                     <connections>
-                        <outlet property="FindSwitch" destination="kO3-K0-1yg" id="846-y7-V2g"/>
                         <outlet property="FinderBtn" destination="kO3-K0-1yg" id="VGK-S6-Ntx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+            <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
         </scene>
     </scenes>
     <resources>

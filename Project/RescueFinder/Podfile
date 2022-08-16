@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '13.0'
+
+target 'RescueFinder' do
+  pod 'GoogleMaps', '7.0.0'
+  pod 'GooglePlaces', '7.0.0'
+end
