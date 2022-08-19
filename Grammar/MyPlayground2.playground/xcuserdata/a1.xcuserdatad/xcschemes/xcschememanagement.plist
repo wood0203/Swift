@@ -4,18 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>RescueFinder.xcscheme_^#shared#^_</key>
+		<key>MyPlayground2 (Playground).xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>6310385A28ACA89900615704</key>
-		<dict>
-			<key>primary</key>
-			<true/>
+			<integer>0</integer>
 		</dict>
 	</dict>
 </dict>

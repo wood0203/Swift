@@ -8,26 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		56F7F2AD521A9841F16BB77E /* libPods-RescueFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC4A4B1E86205AB4A9B3817 /* libPods-RescueFinder.a */; };
-		6310385F28ACA89900615704 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310385E28ACA89900615704 /* AppDelegate.swift */; };
-		6310386128ACA89900615704 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310386028ACA89900615704 /* SceneDelegate.swift */; };
-		6310386328ACA89900615704 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310386228ACA89900615704 /* ViewController.swift */; };
-		6310386628ACA89900615704 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386428ACA89900615704 /* Main.storyboard */; };
-		6310386828ACA89900615704 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6310386728ACA89900615704 /* Assets.xcassets */; };
-		6310386B28ACA89900615704 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386928ACA89900615704 /* LaunchScreen.storyboard */; };
-		63ACAAF728ACDAF40011D00C /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACAAF628ACDAF40011D00C /* ALLData.swift */; };
-		63ACAAFB28ACF59F0011D00C /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACAAFA28ACF59F0011D00C /* DataLoader.swift */; };
-		63ACAAFF28ACFC540011D00C /* rescue_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 63ACAAFE28ACFC540011D00C /* rescue_data.json */; };
+		631EF35228AF838000DFC9AD /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310386228ACA89900615704 /* GoogleMapView.swift */; };
+		631EF35328AF838300DFC9AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310385E28ACA89900615704 /* AppDelegate.swift */; };
+		631EF35428AF838500DFC9AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310386028ACA89900615704 /* SceneDelegate.swift */; };
+		631EF35528AF838900DFC9AD /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACAAF628ACDAF40011D00C /* ALLData.swift */; };
+		631EF35628AF838C00DFC9AD /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACAAFA28ACF59F0011D00C /* DataLoader.swift */; };
+		6378B44428AE3924004E4BC7 /* rescue_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 63ACAAFE28ACFC540011D00C /* rescue_data.json */; };
+		6378B44528AE3927004E4BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386428ACA89900615704 /* Main.storyboard */; };
+		6378B44628AE392E004E4BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6310386728ACA89900615704 /* Assets.xcassets */; };
+		6378B44728AE3978004E4BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386928ACA89900615704 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3EC4A4B1E86205AB4A9B3817 /* libPods-RescueFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RescueFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6310385E28ACA89900615704 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6310386028ACA89900615704 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6310386228ACA89900615704 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6310386228ACA89900615704 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		6310386528ACA89900615704 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6310386728ACA89900615704 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6310386A28ACA89900615704 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6310386C28ACA89900615704 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6378B43828AE31C9004E4BC7 /* KakaoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMapView.swift; sourceTree = "<group>"; };
+		6378B43A28AE37B5004E4BC7 /* KakaoMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KakaoMap.storyboard; sourceTree = "<group>"; };
 		63ACAADE28ACBD8F0011D00C /* RescueFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63ACAAF628ACDAF40011D00C /* ALLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLData.swift; sourceTree = "<group>"; };
 		63ACAAFA28ACF59F0011D00C /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
@@ -73,10 +75,12 @@
 				63ACAAFE28ACFC540011D00C /* rescue_data.json */,
 				6310385E28ACA89900615704 /* AppDelegate.swift */,
 				6310386028ACA89900615704 /* SceneDelegate.swift */,
-				6310386228ACA89900615704 /* ViewController.swift */,
+				6310386228ACA89900615704 /* GoogleMapView.swift */,
+				6378B43828AE31C9004E4BC7 /* KakaoMapView.swift */,
 				63ACAAF628ACDAF40011D00C /* ALLData.swift */,
 				63ACAAFA28ACF59F0011D00C /* DataLoader.swift */,
 				6310386428ACA89900615704 /* Main.storyboard */,
+				6378B43A28AE37B5004E4BC7 /* KakaoMap.storyboard */,
 				6310386928ACA89900615704 /* LaunchScreen.storyboard */,
 				6310386728ACA89900615704 /* Assets.xcassets */,
 				6310386C28ACA89900615704 /* Info.plist */,
@@ -100,10 +104,10 @@
 			buildConfigurationList = 6310386F28ACA89900615704 /* Build configuration list for PBXNativeTarget "RescueFinder" */;
 			buildPhases = (
 				B281A3B7DDCAC92AB9EFC65F /* [CP] Check Pods Manifest.lock */,
-				6310385728ACA89900615704 /* Sources */,
 				6310385828ACA89900615704 /* Frameworks */,
-				6310385928ACA89900615704 /* Resources */,
 				428A48B13D3BF70643C74964 /* [CP] Copy Pods Resources */,
+				6378B44328AE391D004E4BC7 /* Resources */,
+				631EF35128AF837100DFC9AD /* Sources */,
 			);
 			buildRules = (
 			);
@@ -148,14 +152,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6310385928ACA89900615704 /* Resources */ = {
+		6378B44328AE391D004E4BC7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63ACAAFF28ACFC540011D00C /* rescue_data.json in Resources */,
-				6310386B28ACA89900615704 /* LaunchScreen.storyboard in Resources */,
-				6310386828ACA89900615704 /* Assets.xcassets in Resources */,
-				6310386628ACA89900615704 /* Main.storyboard in Resources */,
+				6378B44428AE3924004E4BC7 /* rescue_data.json in Resources */,
+				6378B44528AE3927004E4BC7 /* Main.storyboard in Resources */,
+				6378B44628AE392E004E4BC7 /* Assets.xcassets in Resources */,
+				6378B44728AE3978004E4BC7 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,15 +208,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6310385728ACA89900615704 /* Sources */ = {
+		631EF35128AF837100DFC9AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63ACAAFB28ACF59F0011D00C /* DataLoader.swift in Sources */,
-				6310386328ACA89900615704 /* ViewController.swift in Sources */,
-				6310385F28ACA89900615704 /* AppDelegate.swift in Sources */,
-				6310386128ACA89900615704 /* SceneDelegate.swift in Sources */,
-				63ACAAF728ACDAF40011D00C /* ALLData.swift in Sources */,
+				631EF35528AF838900DFC9AD /* ALLData.swift in Sources */,
+				631EF35428AF838500DFC9AD /* SceneDelegate.swift in Sources */,
+				631EF35228AF838000DFC9AD /* GoogleMapView.swift in Sources */,
+				631EF35328AF838300DFC9AD /* AppDelegate.swift in Sources */,
+				631EF35628AF838C00DFC9AD /* DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +370,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2F5MZFTY2R;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -376,6 +381,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용중에만 위치정보를 이용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -404,6 +410,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2F5MZFTY2R;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -414,6 +421,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용중에만 위치정보를 이용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
