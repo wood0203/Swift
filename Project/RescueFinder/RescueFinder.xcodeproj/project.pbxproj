@@ -17,6 +17,7 @@
 		6378B44528AE3927004E4BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386428ACA89900615704 /* Main.storyboard */; };
 		6378B44628AE392E004E4BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6310386728ACA89900615704 /* Assets.xcassets */; };
 		6378B44728AE3978004E4BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310386928ACA89900615704 /* LaunchScreen.storyboard */; };
+		6379219E28B0C09000C02D21 /* GoogleMapNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379219D28B0C09000C02D21 /* GoogleMapNavi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6310386C28ACA89900615704 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6378B43828AE31C9004E4BC7 /* KakaoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMapView.swift; sourceTree = "<group>"; };
 		6378B43A28AE37B5004E4BC7 /* KakaoMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KakaoMap.storyboard; sourceTree = "<group>"; };
+		6379219D28B0C09000C02D21 /* GoogleMapNavi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapNavi.swift; sourceTree = "<group>"; };
 		63ACAADE28ACBD8F0011D00C /* RescueFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63ACAAF628ACDAF40011D00C /* ALLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLData.swift; sourceTree = "<group>"; };
 		63ACAAFA28ACF59F0011D00C /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				6310385E28ACA89900615704 /* AppDelegate.swift */,
 				6310386028ACA89900615704 /* SceneDelegate.swift */,
 				6310386228ACA89900615704 /* GoogleMapView.swift */,
+				6379219D28B0C09000C02D21 /* GoogleMapNavi.swift */,
 				6378B43828AE31C9004E4BC7 /* KakaoMapView.swift */,
 				63ACAAF628ACDAF40011D00C /* ALLData.swift */,
 				63ACAAFA28ACF59F0011D00C /* DataLoader.swift */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				631EF35528AF838900DFC9AD /* ALLData.swift in Sources */,
+				6379219E28B0C09000C02D21 /* GoogleMapNavi.swift in Sources */,
 				631EF35428AF838500DFC9AD /* SceneDelegate.swift in Sources */,
 				631EF35228AF838000DFC9AD /* GoogleMapView.swift in Sources */,
 				631EF35328AF838300DFC9AD /* AppDelegate.swift in Sources */,

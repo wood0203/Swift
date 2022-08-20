@@ -16,38 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CFc-Up-j8I">
-                                <rect key="frame" x="20" y="120" width="374" height="498"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="최단거리 응급구조함 네비게이션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-9V-dfb">
-                                <rect key="frame" x="20" y="637" width="374" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="최단거리 응급구조함 네비게이션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-9V-dfb">
+                                <rect key="frame" x="20" y="672" width="374" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nY-SE-4OL">
-                                <rect key="frame" x="82" y="716" width="117" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nY-SE-4OL">
+                                <rect key="frame" x="82" y="748" width="117" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="117" id="X0t-H6-69P"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="도보"/>
                                 <connections>
                                     <action selector="touchBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x6I-Vx-O9N"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soF-r0-QHt">
-                                <rect key="frame" x="207" y="716" width="125" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soF-r0-QHt">
+                                <rect key="frame" x="207" y="748" width="125" height="59"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="자동차"/>
                                 <connections>
                                     <action selector="touchBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BD8-e8-nay"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egH-6y-9Hv">
-                                <rect key="frame" x="174" y="795" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Jq-FJ-UKx">
+                                <rect key="frame" x="20" y="80" width="350" height="520"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egH-6y-9Hv">
+                                <rect key="frame" x="152" y="815" width="124" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
@@ -58,9 +57,31 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lcl-9V-dfb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="8UP-7W-2PM"/>
+                            <constraint firstItem="1Jq-FJ-UKx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="8us-02-8iI"/>
+                            <constraint firstItem="6nY-SE-4OL" firstAttribute="baseline" secondItem="soF-r0-QHt" secondAttribute="baseline" id="91L-bo-jc8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1Jq-FJ-UKx" secondAttribute="trailing" constant="25" id="91h-h3-oWQ"/>
+                            <constraint firstItem="6nY-SE-4OL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="82" id="9xW-Sh-1fF"/>
+                            <constraint firstItem="Lcl-9V-dfb" firstAttribute="centerX" secondItem="egH-6y-9Hv" secondAttribute="centerX" id="Bdi-gw-0sJ"/>
+                            <constraint firstItem="1Jq-FJ-UKx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Etp-r6-nNS"/>
+                            <constraint firstItem="6nY-SE-4OL" firstAttribute="top" secondItem="Lcl-9V-dfb" secondAttribute="bottom" constant="8" id="PLH-ah-fr8"/>
+                            <constraint firstItem="soF-r0-QHt" firstAttribute="baseline" secondItem="6nY-SE-4OL" secondAttribute="firstBaseline" id="R0O-Et-YoT"/>
+                            <constraint firstItem="egH-6y-9Hv" firstAttribute="top" secondItem="soF-r0-QHt" secondAttribute="bottom" constant="8" id="SHr-cI-QzE"/>
+                            <constraint firstItem="soF-r0-QHt" firstAttribute="firstBaseline" secondItem="6nY-SE-4OL" secondAttribute="baseline" id="Suz-Wv-WbC"/>
+                            <constraint firstItem="Lcl-9V-dfb" firstAttribute="top" secondItem="1Jq-FJ-UKx" secondAttribute="bottom" constant="55" id="Y0M-04-h2W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="soF-r0-QHt" secondAttribute="trailing" constant="82" id="bKO-68-Ynp"/>
+                            <constraint firstItem="egH-6y-9Hv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="168" id="cYm-X9-50U"/>
+                            <constraint firstAttribute="bottom" secondItem="6nY-SE-4OL" secondAttribute="bottom" constant="107" id="gKI-lO-6WY"/>
+                            <constraint firstItem="soF-r0-QHt" firstAttribute="leading" secondItem="6nY-SE-4OL" secondAttribute="trailing" constant="8" id="htu-0Y-HVu"/>
+                            <constraint firstItem="1Jq-FJ-UKx" firstAttribute="leading" secondItem="Lcl-9V-dfb" secondAttribute="leading" id="jcZ-nr-qHn"/>
+                            <constraint firstAttribute="bottom" secondItem="1Jq-FJ-UKx" secondAttribute="bottom" constant="285" id="qBz-Q7-G7P"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="NaviBtn" destination="egH-6y-9Hv" id="sgg-Gc-Lgq"/>
+                        <outlet property="Subview" destination="1Jq-FJ-UKx" id="ABu-TQ-8bO"/>
+                        <outlet property="mapView" destination="1Jq-FJ-UKx" id="Nzu-kD-fjj"/>
                         <outletCollection property="TransportBtn" destination="soF-r0-QHt" collectionClass="NSMutableArray" id="33f-pC-t1H"/>
                         <outletCollection property="TransportBtn" destination="6nY-SE-4OL" collectionClass="NSMutableArray" id="pjf-nb-yTb"/>
                     </connections>
@@ -69,13 +90,20 @@
             </objects>
             <point key="canvasLocation" x="82.608695652173921" y="93.75"/>
         </scene>
-        <!--View Controller2-->
+        <!--Google Map Navi-->
         <scene sceneID="mSj-FO-xst">
             <objects>
-                <viewController id="JJY-Oe-vn6" customClass="ViewController2" customModule="RescueFinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JJY-Oe-vn6" customClass="GoogleMapNavi" customModule="RescueFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVR-7p-3ab">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXO-Jz-Qxo">
+                                <rect key="frame" x="103" y="223" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="bkd-oC-wrX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

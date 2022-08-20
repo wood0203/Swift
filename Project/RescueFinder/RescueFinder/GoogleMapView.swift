@@ -6,12 +6,13 @@ class GoogleMapView: UIViewController, CLLocationManagerDelegate {
     
     // 응급구조함 위치 데이터 로드
     let Rescue_data = DataLoader().rescue_data
-
     var locationManager = CLLocationManager()
     
     //var BtnIndex: Int?
     
     // 도보, 자동차 라디오버튼
+    @IBOutlet var mapView: GMSMapView!
+    @IBOutlet var Subview: UIView!
     @IBOutlet var TransportBtn: [UIButton]!
     @IBOutlet var NaviBtn: UIButton!
     
@@ -35,28 +36,31 @@ class GoogleMapView: UIViewController, CLLocationManagerDelegate {
             var currentLng = locationManager.location?.coordinate.longitude ?? 0
             print("경도: \(currentLat) 위도: \(currentLng)")
 
-            let camera = GMSCameraPosition(latitude: currentLat, longitude: currentLng, zoom: 9)
-            let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-            self.view = mapView
+            let camera = GMSCameraPosition(latitude: currentLat, longitude: currentLng, zoom: 10)
+            var frame1 = CGRect(origin: CGPoint(x:20, y: 80), size: CGSize(width: 350, height: 520))
+            mapView = GMSMapView.map(withFrame: frame1, camera: camera)
+            self.view.addSubview(mapView)
                 
             let currentLoc = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
             let rescue_inform = FindRescue(Loc1: currentLoc)
             let rescue_loc = rescue_inform.1
             let rescue_add = rescue_inform.0
+            let rescue_lat = rescue_loc.latitude
+            let rescue_lng = rescue_loc.longitude
             
             
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
             marker.title = "현재 위치"
-            marker.map = mapView
+            marker.map = self.mapView
             
             let marker2 = GMSMarker()
-            marker2.position = CLLocationCoordinate2D(latitude: rescue_loc.latitude, longitude: rescue_loc.longitude)
+            marker2.position = CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng)
             marker2.title = "응급구조함 위치"
-            marker2.map = mapView
+            marker2.snippet = rescue_add
+            marker2.map = self.mapView
             
         }
-        
         
     }
     
@@ -90,6 +94,12 @@ class GoogleMapView: UIViewController, CLLocationManagerDelegate {
 //        }
 //    }
     
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+      ) {
+        print(error)
+      }
     
     func FindRescue(Loc1: CLLocationCoordinate2D) -> (String, CLLocationCoordinate2D) {
         var result = 10000000000.0
@@ -99,19 +109,23 @@ class GoogleMapView: UIViewController, CLLocationManagerDelegate {
         for idx in 1..<Rescue_data.count {
             var rescue_lat = Double(Rescue_data[idx].FIELD5)!
             var rescue_lng = Rescue_data[idx].FIELD6
-            var Loc2 = CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng)
-            var dist = CLLocation.distance(from: Loc1, to: Loc2)
+            var dist = CLLocation.distance(from: Loc1, to: CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng))
             if dist < result {
                 result = dist
+                Loc2.latitude = rescue_lat
+                Loc2.longitude = rescue_lng
                 address = Rescue_data[idx].FIELD4
             }
         }
+        print("\(address)")
         return (address, Loc2)
     }
     
     func addMarker() {
         
     }
+    
+    
     
 }
 
