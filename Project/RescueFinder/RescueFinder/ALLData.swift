@@ -20,4 +20,3 @@ struct Rescue : Codable {
     let FIELD6: Double
     let FIELD7: String
 }
-
