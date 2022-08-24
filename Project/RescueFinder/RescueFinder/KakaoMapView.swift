@@ -1,102 +1,86 @@
 import UIKit
 import CoreLocation
 
-class KakaoMapView: UIViewController, MTMapViewDelegate {
+class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate {
     
     let Rescue_data = DataLoader().rescue_data
-    var locationManager = CLLocationManager()
+    
     var mapView: MTMapView!
+    var mapPoint1: MTMapPoint?
     var geocoder: MTMapReverseGeoCoder!
-    public var lat: Double?
-    public var lng: Double?
-    var adress: String = ""
+    var Marker1: MTMapPOIItem!
+    var Marker2: MTMapPOIItem!
+    var Rescue_loc: [Double] = []
+    public var user_lat: Double = 0
+    public var user_lng: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        } else {
+            print("위치 서비스 off 상태")
+        }
+        
         let Frame = CGRect(x: 20, y: 80, width: 355, height: 540)
         mapView = MTMapView(frame: Frame)
+        
         if let mapView = mapView {
             mapView.delegate = self
             mapView.baseMapType = .standard
+
             self.view.addSubview(mapView)
         }
+                
+        Rescue_loc = FindRescue(lat: user_lat, lng: user_lng)
         
-        if let openApp = URL(string: "KakaoMap://"), UIApplication.shared.canOpenURL(openApp) {
-            UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
-        } else {
-            if let openStore = URL(string: "itms-apps://itunes.apple.com/app/AppleID"), UIApplication.shared.canOpenURL(openStore) {
-                UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
+        Marker1 = MTMapPOIItem()
+        Marker1.itemName="현위치"
+        Marker1.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
+            latitude: user_lat, longitude: user_lng))
+        Marker1.markerType = .bluePin
+        
+        Marker2 = MTMapPOIItem()
+        Marker2.itemName="응급구조함"
+        Marker2.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
+            latitude: Rescue_loc[0], longitude: Rescue_loc[1]))
+        Marker2.markerType = .redPin
+        
+        mapView.addPOIItems([Marker1, Marker2])
+        mapView.fitAreaToShowAllPOIItems()
+    }
+    
+    
+    func FindRescue(lat: Double, lng: Double) -> [Double] {
+        var result = 10000000000.0
+        var latit: Double = 0
+        var longit: Double = 0
+        for idx in 0..<Rescue_data.count {
+            var rescue_lat = Double(Rescue_data[idx].FIELD5)!
+            var rescue_lng = Rescue_data[idx].FIELD6
+            var dist = CLLocation.distance(
+                from: CLLocationCoordinate2D(latitude: lat, longitude: lng),
+                to: CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng))
+            if dist < result {
+                result = dist
+                latit = rescue_lat
+                longit = rescue_lng
             }
         }
+        print("위도: \(latit) 경도: \(longit)")
+        return [latit, longit]
+        
+    }
 
-        
-        
-//            let currentLoc = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
-//            let rescue_inform = FindRescue(Loc1: currentLoc)
-//            let rescue_loc = rescue_inform.1
-//            let rescue_add = rescue_inform.0
-//            let rescue_lat = rescue_loc.latitude
-//            let rescue_lng = rescue_loc.longitude
-//
-            
-            
-            
-            
-        }
-        
-    
-    
-    
-//    @IBAction func touchBtn(_ sender: UIButton) {
-//        // 이미 버튼이 선택되어 있는 경우
-//        if BtnIndex != nil {
-//
-//            // 새로운 버튼 선택
-//            if !sender.isSelected {
-//                for index in 0...1 {
-//                    TransportBtn[index].isSelected = false
-//                }
-//                sender.isSelected = true
-//                BtnIndex = TransportBtn.firstIndex(of: sender)
-//
-//                    // 기존 선택된 버튼 선택
-//                } else {
-//                    sender.isSelected = false
-//                    BtnIndex = nil
-//                    }
-//
-//            // 버튼이 선택되어 있지 않는 경우
-//        } else {
-//            sender.isSelected = true
-//            BtnIndex = TransportBtn.firstIndex(of: sender)
-//        }
-//    }
-    
-    
-//    func FindRescue(Loc1: CLLocationCoordinate2D) -> (String, CLLocationCoordinate2D) {
-//        var result = 10000000000.0
-//        var address: String = ""
-//        var Loc2 = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-//
-//        for idx in 1..<Rescue_data.count {
-//            var rescue_lat = Double(Rescue_data[idx].FIELD5)!
-//            var rescue_lng = Rescue_data[idx].FIELD6
-//            var dist = CLLocation.distance(from: Loc1, to: CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng))
-//            if dist < result {
-//                result = dist
-//                Loc2.latitude = rescue_lat
-//                Loc2.longitude = rescue_lng
-//                address = Rescue_data[idx].FIELD4
-//            }
-//        }
-//        return (address, Loc2)
-//    }
-    
-    func CanOpenURL
 }
 
-                                
+
 extension CLLocation {
     class func distance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {
         let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
