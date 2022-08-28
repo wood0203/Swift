@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>32230FB1-D1DE-479B-95E3-C00DE592BA71</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>32230FB1-D1DE-479B-95E3-C00DE592BA71.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>RescueFinder project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>RescueFinder</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build RescueFinder</string>
+			<key>timeStartedRecording</key>
+			<real>683194901.135131</real>
+			<key>timeStoppedRecording</key>
+			<real>683194901.17257297</real>
+			<key>title</key>
+			<string>Build RescueFinder</string>
+			<key>uniqueIdentifier</key>
+			<string>32230FB1-D1DE-479B-95E3-C00DE592BA71</string>
+		</dict>
+		<key>EA720AE9-786A-4339-B53F-76F5F71D29A4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>EA720AE9-786A-4339-B53F-76F5F71D29A4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>RescueFinder project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>RescueFinder</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build RescueFinder</string>
+			<key>timeStartedRecording</key>
+			<real>683116445.48132896</real>
+			<key>timeStoppedRecording</key>
+			<real>683116445.75998604</real>
+			<key>title</key>
+			<string>Build RescueFinder</string>
+			<key>uniqueIdentifier</key>
+			<string>EA720AE9-786A-4339-B53F-76F5F71D29A4</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

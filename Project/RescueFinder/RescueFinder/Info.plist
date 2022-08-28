@@ -12,7 +12,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Inwoo.RescueFinder</string>
+			<string>Inwoo.RescueFinder2</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakaomap</string>

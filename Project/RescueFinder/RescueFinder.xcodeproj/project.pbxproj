@@ -24,9 +24,6 @@
 		63C5FCBB28B4856700F3CB40 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FCBA28B4856700F3CB40 /* libxml2.tbd */; };
 		63C5FCBD28B4857000F3CB40 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FCBC28B4857000F3CB40 /* libsqlite3.tbd */; };
 		63C5FD2D28B48F7100F3CB40 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FCBE28B4867500F3CB40 /* Metal.framework */; };
-		63C5FD7428B492DA00F3CB40 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FD7328B492DA00F3CB40 /* libsqlite3.0.tbd */; };
-		63C5FD7628B492E000F3CB40 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FD7528B492E000F3CB40 /* libxml2.2.tbd */; };
-		63C5FD7828B492E900F3CB40 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5FD7728B492E900F3CB40 /* libc++.1.tbd */; };
 		63C5FDA128B49F2E00F3CB40 /* map_pinup_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C5FD7C28B49F2E00F3CB40 /* map_pinup_custom@3x.png */; };
 		63C5FDA228B49F2E00F3CB40 /* map_pin_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C5FD7D28B49F2E00F3CB40 /* map_pin_custom.png */; };
 		63C5FDA328B49F2E00F3CB40 /* shadow_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C5FD7E28B49F2E00F3CB40 /* shadow_balloon.png */; };
@@ -65,7 +62,6 @@
 		6310386728ACA89900615704 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6310386A28ACA89900615704 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6310386C28ACA89900615704 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6378B43A28AE37B5004E4BC7 /* KakaoMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KakaoMap.storyboard; sourceTree = "<group>"; };
 		6379219D28B0C09000C02D21 /* KakaoMapNavi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMapNavi.swift; sourceTree = "<group>"; };
 		63ACAADE28ACBD8F0011D00C /* RescueFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63ACAAF628ACDAF40011D00C /* ALLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLData.swift; sourceTree = "<group>"; };
@@ -126,9 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C5FD7828B492E900F3CB40 /* libc++.1.tbd in Frameworks */,
-				63C5FD7628B492E000F3CB40 /* libxml2.2.tbd in Frameworks */,
-				63C5FD7428B492DA00F3CB40 /* libsqlite3.0.tbd in Frameworks */,
 				63C5FCBD28B4857000F3CB40 /* libsqlite3.tbd in Frameworks */,
 				63C5FCBB28B4856700F3CB40 /* libxml2.tbd in Frameworks */,
 				63C5FD2D28B48F7100F3CB40 /* Metal.framework in Frameworks */,
@@ -164,7 +157,6 @@
 				63ACAAF628ACDAF40011D00C /* ALLData.swift */,
 				63ACAAFA28ACF59F0011D00C /* DataLoader.swift */,
 				6310386428ACA89900615704 /* Main.storyboard */,
-				6378B43A28AE37B5004E4BC7 /* KakaoMap.storyboard */,
 				6310386928ACA89900615704 /* LaunchScreen.storyboard */,
 				6310386728ACA89900615704 /* Assets.xcassets */,
 				6310386C28ACA89900615704 /* Info.plist */,
@@ -519,7 +511,7 @@
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_FILE = /Users/a1/Documents/GitHub/Swift/Project/RescueFinder/RescueFinder/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보 서비스 on?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -541,7 +533,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/a1/Documents/GitHub/Swift/Project/RescueFinder/Header.h;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -562,7 +554,7 @@
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RescueFinder/Info.plist;
+				INFOPLIST_FILE = /Users/a1/Documents/GitHub/Swift/Project/RescueFinder/RescueFinder/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보 서비스 on?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -584,7 +576,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/a1/Documents/GitHub/Swift/Project/RescueFinder/Header.h;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
