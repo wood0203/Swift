@@ -564,8 +564,4 @@ typedef int MTMapZoomLevel;
  * @see MTMapPOIItem
  */
 - (void)mapView:(MTMapView*)mapView draggablePOIItem:(MTMapPOIItem*)poiItem movedToNewMapPoint:(MTMapPoint*)newMapPoint;
-
-
-
-
 @end

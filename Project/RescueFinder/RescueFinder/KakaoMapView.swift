@@ -10,13 +10,16 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     var geocoder: MTMapReverseGeoCoder!
     
     var Rescue_loc: [Double] = []
-    public var user_lat: Double! = 0
-    public var user_lng: Double! = 0
+    public var user_lat: Double = 0
+    public var user_lng: Double = 0
+    
+    @IBOutlet var NaviBtn: UIButton!
+    @IBOutlet var t1: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var locationManager = CLLocationManager()
+        let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -27,16 +30,16 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             print("위치 서비스 off 상태")
         }
         
-        user_lat = locationManager.location?.coordinate.latitude
-        user_lng = locationManager.location?.coordinate.longitude
+        user_lat = (locationManager.location?.coordinate.latitude)!
+        user_lng = (locationManager.location?.coordinate.longitude)!
         
-        let Frame = CGRect(x: 20, y: 110, width: 355, height: 540)
+        let Frame = CGRect(x: 16, y: 93, width: 358, height: 549)
         mapView = MTMapView(frame: Frame)
         if let mapView = mapView {
             mapView.delegate = self
             mapView.baseMapType = .standard
             mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
-                latitude: user_lat, longitude: user_lng)), zoomLevel: 8, animated: true)
+                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: true)
             
             self.view.addSubview(mapView)
         }
@@ -57,6 +60,8 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         
         mapView.addPOIItems([Marker1])
         mapView.addPOIItems([Marker2])
+        
+//        mapView.fitAreaToShowAllPOIItems()
     }
     
     func FindRescue(lat: Double, lng: Double) -> [Double] {
@@ -79,21 +84,46 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         return [latit, longit]
     }
     
-    @IBAction func NaviStart(_ sender: Any) {
+    @IBAction func NaviStart(_ sender: UIButton) {
         var user_url = String(user_lat) + "," + String(user_lng)
         var rescue_url = String(Rescue_loc[0]) + "," + String(Rescue_loc[1])
         var total_url = "kakaomap://route?sp=" + user_url + "&ep=" + rescue_url + "&by=FOOT"
-
+        total_url = "kakaomap://"
+        
         if let openApp = URL(string: total_url), UIApplication.shared.canOpenURL(openApp) {
-            UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+            t1.text = "asdfasdfasdfasdfasdfasdf"
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+            }
+            else {
+                UIApplication.shared.openURL(openApp)
+            }
             
-        } else {
-            if let openStore = URL(string: "itms-apps://itunes.apple.com/app/kakaomap"),
-               UIApplication.shared.canOpenURL(openStore) {
-                UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
+        }
+        
+        else {
+            t1.text = "wqerqwerqwerqwerwqer"
+            if let openStore = URL(string: "itms-apps://itunes.apple.com/app/id304608425"), UIApplication.shared.canOpenURL(openStore) {
+                
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
+                }
+                else {
+                    UIApplication.shared.openURL(openStore)
+                }
             }
         }
     }
+        
+    
+//        if (UIApplication.shared.canOpenURL(kakaomap_url! as URL)) {
+//                   //open(_:options:completionHandler:) 메소드를 호출해서 카카오톡 앱 열기
+//                   UIApplication.shared.open(kakaomap_url! as URL)
+//               }
+//               //사용 불가능한 URLScheme일 때(카카오톡이 설치되지 않았을 경우)
+//               else {
+//                   print("No kakaotalk installed.")
+//               }
     
 }
 
