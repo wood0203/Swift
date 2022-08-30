@@ -2,25 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>kakaomap</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Inwoo.RescueFinder2</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>kakaomap</string>
-			</array>
+			<array/>
 		</dict>
+		<dict/>
 	</array>
 	<key>KAKAO_APP_KEY</key>
 	<string>30d0d841c02f99a1f94f7af2c54bee9f</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakaomap</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

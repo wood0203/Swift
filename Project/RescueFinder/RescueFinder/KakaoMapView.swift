@@ -14,6 +14,8 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     public var user_lng: Double = 0
     
     @IBOutlet var NaviBtn: UIButton!
+    @IBOutlet var TrackBtn: UIButton!
+    @IBOutlet var RainNoticeBtn: UIButton!
     @IBOutlet var t1: UILabel!
     
     override func viewDidLoad() {
@@ -36,21 +38,23 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         let Frame = CGRect(x: 16, y: 93, width: 358, height: 549)
         mapView = MTMapView(frame: Frame)
         if let mapView = mapView {
+            
             mapView.delegate = self
             mapView.baseMapType = .standard
             mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
-                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: true)
+                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: false)
             
             self.view.addSubview(mapView)
         }
-                
-        Rescue_loc = FindRescue(lat: user_lat, lng: user_lng)
+        
         
         let Marker1 = MTMapPOIItem()
         Marker1.itemName="현위치"
         Marker1.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
             latitude: user_lat, longitude: user_lng))
         Marker1.markerType = .bluePin
+        
+        Rescue_loc = FindRescue(lat: user_lat, lng: user_lng)
         
         let Marker2 = MTMapPOIItem()
         Marker2.itemName="응급구조함"
@@ -60,7 +64,6 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         
         mapView.addPOIItems([Marker1])
         mapView.addPOIItems([Marker2])
-        
 //        mapView.fitAreaToShowAllPOIItems()
     }
     
@@ -85,13 +88,13 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     }
     
     @IBAction func NaviStart(_ sender: UIButton) {
+        
         var user_url = String(user_lat) + "," + String(user_lng)
         var rescue_url = String(Rescue_loc[0]) + "," + String(Rescue_loc[1])
         var total_url = "kakaomap://route?sp=" + user_url + "&ep=" + rescue_url + "&by=FOOT"
-        total_url = "kakaomap://"
         
         if let openApp = URL(string: total_url), UIApplication.shared.canOpenURL(openApp) {
-            t1.text = "asdfasdfasdfasdfasdfasdf"
+
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
             }
@@ -102,7 +105,6 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         }
         
         else {
-            t1.text = "wqerqwerqwerqwerwqer"
             if let openStore = URL(string: "itms-apps://itunes.apple.com/app/id304608425"), UIApplication.shared.canOpenURL(openStore) {
                 
                 if #available(iOS 10.0, *) {
@@ -114,18 +116,36 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             }
         }
     }
+    
+    
+    @IBAction func TrackStart(_ sender: UIButton) {
         
-    
-//        if (UIApplication.shared.canOpenURL(kakaomap_url! as URL)) {
-//                   //open(_:options:completionHandler:) 메소드를 호출해서 카카오톡 앱 열기
-//                   UIApplication.shared.open(kakaomap_url! as URL)
-//               }
-//               //사용 불가능한 URLScheme일 때(카카오톡이 설치되지 않았을 경우)
-//               else {
-//                   print("No kakaotalk installed.")
-//               }
-    
+        // 선택이 되어있지 않은 상태에서 클릭이 됬으므로
+        // on 버튼은 조건에 !를 붙여줘야함.
+        if !sender.isSelected {
+            t1.text = "12312312313"
+            mapView.currentLocationTrackingMode = .onWithoutHeading
+            mapView.showCurrentLocationMarker = true
+            
+            TrackBtn.tintColor = UIColor(red: 108/255, green: 189/255, blue: 249/255, alpha: 1)
+            // isselected를 true로 바꿔줌으로써 다시 클릭될때
+            // else를 실행할수 있게 해줌.
+            sender.isSelected = true
+        }
+        
+        else {
+            t1.text = "89980890890"
+            mapView.currentLocationTrackingMode = .off
+            mapView.showCurrentLocationMarker = false
+            mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
+                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: true)
+            
+            TrackBtn.tintColor = UIColor.blue
+            sender.isSelected = false
+        }
+    }
 }
+
 
 extension CLLocation {
     class func distance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {
