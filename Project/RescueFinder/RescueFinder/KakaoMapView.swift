@@ -1,6 +1,18 @@
 import UIKit
 import CoreLocation
 
+struct rescue: Comparable {
+    
+    var distance: Double
+    var address: String
+    var latitude: Double
+    var longitude: Double
+    
+    static func < (lhs: rescue, rhs: rescue) -> Bool {
+        return lhs.distance < rhs.distance
+    }
+}
+
 class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate {
     
     let Rescue_data = DataLoader().rescue_data
@@ -9,14 +21,15 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     var mapPoint1: MTMapPoint?
     var geocoder: MTMapReverseGeoCoder!
     
-    var Rescue_loc: [Double] = []
+    // 최단거리 5개 응급구조함 배열
+    var rescue_lst: [rescue] = []
+    // 사용자 위도, 경도 변수
     public var user_lat: Double = 0
     public var user_lng: Double = 0
     
-    @IBOutlet var NaviBtn: UIButton!
-    @IBOutlet var TrackBtn: UIButton!
-    @IBOutlet var RainNoticeBtn: UIButton!
-    @IBOutlet var t1: UILabel!
+    @IBOutlet var FindBtn: UIButton! // 응급구조함 검색 버튼
+    @IBOutlet var TrackBtn: UIButton! // 트래킹 모드 버튼
+    @IBOutlet var RainNoticeBtn: UIButton! // 우천 알림 버튼
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +41,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-        } else {
-            print("위치 서비스 off 상태")
-        }
+        } else { print("위치 서비스 off 상태") }
         
         user_lat = (locationManager.location?.coordinate.latitude)!
         user_lng = (locationManager.location?.coordinate.longitude)!
@@ -38,7 +49,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         let Frame = CGRect(x: 16, y: 93, width: 358, height: 549)
         mapView = MTMapView(frame: Frame)
         if let mapView = mapView {
-            
+            // 델리게이트 설정이 여러개가 가능한가?
             mapView.delegate = self
             mapView.baseMapType = .standard
             mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
@@ -47,83 +58,76 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             self.view.addSubview(mapView)
         }
         
+        // 응급구조함 찾기 실행
+        FindRescue(lat: user_lat, lng: user_lng)
         
-        let Marker1 = MTMapPOIItem()
-        Marker1.itemName="현위치"
-        Marker1.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
-            latitude: user_lat, longitude: user_lng))
-        Marker1.markerType = .bluePin
-        
-        Rescue_loc = FindRescue(lat: user_lat, lng: user_lng)
-        
-        let Marker2 = MTMapPOIItem()
-        Marker2.itemName="응급구조함"
-        Marker2.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
-            latitude: Rescue_loc[0], longitude: Rescue_loc[1]))
-        Marker2.markerType = .redPin
-        
-        mapView.addPOIItems([Marker1])
-        mapView.addPOIItems([Marker2])
-//        mapView.fitAreaToShowAllPOIItems()
-    }
+        // 지도에 마커 추가 실행
+        for i in 0..<5 {
+            MakeMarker(number: i, address: rescue_lst[i].address,
+                       lat: rescue_lst[i].latitude, lng: rescue_lst[i].longitude) }
+        }
     
-    func FindRescue(lat: Double, lng: Double) -> [Double] {
-        var result = 10000000000.0
-        var latit: Double = 0
-        var longit: Double = 0
+    
+    // 최단거리 응급구조함 5개 찾는 함수
+    func FindRescue(lat: Double, lng: Double) {
+        var arr: [rescue] = []
         for idx in 0..<Rescue_data.count {
-            var rescue_lat = Double(Rescue_data[idx].FIELD5)!
-            var rescue_lng = Rescue_data[idx].FIELD6
+            var rescue_add = Rescue_data[idx].FIELD4            // 주소
+            var rescue_lat = Double(Rescue_data[idx].FIELD5)!   // 위도
+            var rescue_lng = Rescue_data[idx].FIELD6            // 경도
+            
+            // 사용자로 부터 거리 계산
             var dist = CLLocation.distance(
                 from: CLLocationCoordinate2D(latitude: lat, longitude: lng),
                 to: CLLocationCoordinate2D(latitude: rescue_lat, longitude: rescue_lng))
-            if dist < result {
-                result = dist
-                latit = rescue_lat
-                longit = rescue_lng
-            }
-        }
-//        print("위도: \(latit) 경도: \(longit)")
-        return [latit, longit]
-    }
-    
-    @IBAction func NaviStart(_ sender: UIButton) {
-        
-        var user_url = String(user_lat) + "," + String(user_lng)
-        var rescue_url = String(Rescue_loc[0]) + "," + String(Rescue_loc[1])
-        var total_url = "kakaomap://route?sp=" + user_url + "&ep=" + rescue_url + "&by=FOOT"
-        
-        if let openApp = URL(string: total_url), UIApplication.shared.canOpenURL(openApp) {
-
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
-            }
-            else {
-                UIApplication.shared.openURL(openApp)
-            }
+            dist = round((dist/1000.0) * 100) / 100.0
             
+            arr.append(rescue(distance: Double(dist), address: rescue_add, latitude: rescue_lat, longitude: rescue_lng))
+            /*
+             여기서 많은 고민을 함.
+             대안1 -> 딕셔너리로 [주소 : 거리]하자 -> 문제점: 최단거리 5개의 응급구조함에 대한 각 요소별 접근이 어려움.
+             대안2 -> 리스트로 [주소,거리]로 초기화해서 값을 넣은다음 최단거리 5개만 뽑자. -> 문제점: 이중리스트는 항상 안에 같은 자료형들끼리만 가능함.
+             결론: 구조체를 사용해서 해결.
+             */
         }
-        
-        else {
-            if let openStore = URL(string: "itms-apps://itunes.apple.com/app/id304608425"), UIApplication.shared.canOpenURL(openStore) {
-                
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
-                }
-                else {
-                    UIApplication.shared.openURL(openStore)
-                }
-            }
-        }
+        arr.sort()
+        rescue_lst.append(contentsOf: arr[0...4])
     }
     
     
+    // 지도에 마커추가 함수
+    // 추가 기능 구현 아이디어 : 마커 클릭시 해당 위치 비치된 응급구조함 사진 출력?
+    func MakeMarker(number: Int, address: String, lat: Double, lng: Double) -> MTMapPOIItem {
+        print(number)
+        let Marker = MTMapPOIItem()
+        Marker.itemName = String(number+1)+"번째"
+        Marker.tag = number
+        Marker.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
+            latitude: lat, longitude: lng))
+        Marker.markerType = .bluePin
+        mapView.addPOIItems([Marker])
+        
+        return Marker
+    }
+    
+    // 응급구조함 찾기 버튼 함수
+    @IBAction func NaviStart(_ sender: Any) {
+        
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as? ViewController2 else {return }
+        vc.rescues = rescue_lst
+        vc.usr_lat = user_lat
+        vc.usr_lng = user_lng
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    // 현위치 트래킹 모드 버튼 함수
     @IBAction func TrackStart(_ sender: UIButton) {
         
         // 선택이 되어있지 않은 상태에서 클릭이 됬으므로
         // on 버튼은 조건에 !를 붙여줘야함.
         if !sender.isSelected {
-            t1.text = "12312312313"
             mapView.currentLocationTrackingMode = .onWithoutHeading
             mapView.showCurrentLocationMarker = true
             
@@ -131,10 +135,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             // isselected를 true로 바꿔줌으로써 다시 클릭될때
             // else를 실행할수 있게 해줌.
             sender.isSelected = true
-        }
-        
-        else {
-            t1.text = "89980890890"
+        } else {
             mapView.currentLocationTrackingMode = .off
             mapView.showCurrentLocationMarker = false
             mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
@@ -145,7 +146,6 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         }
     }
 }
-
 
 extension CLLocation {
     class func distance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {

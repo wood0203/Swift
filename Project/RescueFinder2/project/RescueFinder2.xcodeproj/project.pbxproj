@@ -51,6 +51,7 @@
 		6346890228BB504500553C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634687D728BB36DE00553C03 /* SceneDelegate.swift */; };
 		6346890328BB504C00553C03 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883E28BB37AE00553C03 /* KakaoMapView.swift */; };
 		6346890428BB505100553C03 /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883C28BB379800553C03 /* ALLData.swift */; };
+		63B7397828C071B2004BFC54 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7397728C071B2004BFC54 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 		634688DC28BB437B00553C03 /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		634688FA28BB444600553C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../RescueFinder/RescueFinder/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634688FE28BB483E00553C03 /* rescue_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rescue_data.json; sourceTree = "<group>"; };
+		63B7397728C071B2004BFC54 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				634687D528BB36DE00553C03 /* AppDelegate.swift */,
 				634687D728BB36DE00553C03 /* SceneDelegate.swift */,
 				6346883E28BB37AE00553C03 /* KakaoMapView.swift */,
+				63B7397728C071B2004BFC54 /* ViewController2.swift */,
 				6346884428BB387A00553C03 /* Main.storyboard */,
 				634688F928BB444600553C03 /* LaunchScreen.storyboard */,
 				634687DE28BB36DF00553C03 /* Assets.xcassets */,
@@ -343,6 +346,7 @@
 				6346890228BB504500553C03 /* SceneDelegate.swift in Sources */,
 				6346890128BB503F00553C03 /* AppDelegate.swift in Sources */,
 				6346890028BB503900553C03 /* DataLoader.swift in Sources */,
+				63B7397828C071B2004BFC54 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
