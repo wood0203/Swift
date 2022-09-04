@@ -15,21 +15,28 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
     var usr_lat: Double = 0
     var usr_lng: Double = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ViewCell", for: indexPath) as? CustomCell else {
              return UITableViewCell()
          }
-        cell.Current_add.text = "응급구조함 " + String(indexPath.row)
-        cell.from_distance.text = "거리: 약" + String(rescues[indexPath.row].distance) + "km"
-        cell.Rescue_add.text = rescues[indexPath.row].address
+        if indexPath.row == 5 {
+            cell.Current_add.text = "병원"
+            cell.from_distance.text = "거리: 약 3km"
+        }
+        else {
+            cell.Current_add.text = "응급구조함 " + String(indexPath.row + 1)
+            cell.from_distance.text = "거리: 약" + String(rescues[indexPath.row].distance) + "km"
+            cell.Rescue_add.text = rescues[indexPath.row].address
+        }
         
          return cell
     }
@@ -49,6 +56,7 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil) }
             else { UIApplication.shared.open(openApp)}
+            
         } else {
             if let openStore = URL(string: "itms-apps://itunes.apple.com/app/id304608425"), UIApplication.shared.canOpenURL(openStore) {
                 if #available(iOS 10.0, *) {
