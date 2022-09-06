@@ -16,14 +16,10 @@ enum NetworkError: Error {
 
 class WeatherService {
     
-    var crnt_lat: Double = 0.0
-    var crnt_lng: Double = 0.0
-    
-    init(lat: Double, lng: Double) {
-        crnt_lat = lat
-        crnt_lng = lng
-    }
-    
+    var weatherResponse: WeatherResponse!
+    var cur_lat: Double = 0.0
+    var cur_lng: Double = 0.0
+
     private var apiKey: String {
             get {
                 // 생성한 .plist 파일 경로 불러오기
@@ -42,21 +38,38 @@ class WeatherService {
             }
         }
     
-    func getWeather(completion: @escaping (Result<WeatherResponse, NetworkError>) -> Void) {
+    func getLoc(lat1: Double, lng1: Double) {
+        cur_lat = lat1
+        cur_lng = lng1
+        print("\(cur_lat) \(cur_lng)")
+    }
     
-        let request_url = "https://api.openweathermap.org/data/3.0/onecall?lat=" + String(crnt_lat) + "&lon=" + String(crnt_lng) + "&exclude=minutely,daily,alerts&appid=0640b95f418fe69e7c7a882c71d17482"
-        let url = URL(string: request_url)
-        guard let url = url else { return completion(.failure(.badUrl)) }
-        let session = URLSession(configuration: .default)
+    func getWeather(completion: @escaping (Result<WeatherResponse, NetworkError>) -> Void) {
         
+        let request_url = "https://api.openweathermap.org/data/3.0/onecall?lat=\(cur_lat)&lon=\(cur_lng)&exclude=minutely,daily&appid=\(apiKey)"
+        let url = URL(string: request_url)
+        
+        guard let url = url else {
+            print("badURL")
+            return completion(.failure(.badUrl)) }
+        
+        let session = URLSession(configuration: .default)
         session.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else { return completion(.failure(.noData)) }
+            
+            guard let data = data, error == nil else {
+                print("noData")
+                return completion(.failure(.noData)) }
             
             let weatherResponse = try? JSONDecoder().decode(WeatherResponse.self, from: data)
-            if let weatherResponse = weatherResponse { completion(.success(weatherResponse))
-            } else { completion(.failure(.decodingError)) }
         
-        }.resume()
-    }
+            if let weatherResponse = weatherResponse { completion(.success(weatherResponse))}
+            else {
+                print("decodingError")
+                completion(.failure(.decodingError)) }
+            
+            }.resume()
+        }
+    
+    
+    
 }
-

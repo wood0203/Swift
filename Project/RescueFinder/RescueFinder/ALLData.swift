@@ -28,10 +28,10 @@ struct Hospital : Codable {
 struct WeatherResponse: Decodable {
     let timezone: String
     let current: Current
-    let hourly: Hourly
+    let hourly: [Hourly]
 }
 
-struct Current : Decodable{
+struct Current : Decodable {
     let temp: Double
     let feels_like: Double
     let wind_speed: Double
@@ -45,8 +45,10 @@ struct Weather: Decodable {
 }
 
 struct Hourly: Decodable {
-    let hourly_weather: [Weather]
+    let dt: Int
+    let weather: [Weather]
 }
+
 
 //var currentWeather: Current?
 //    var temperature: Double = 0.0

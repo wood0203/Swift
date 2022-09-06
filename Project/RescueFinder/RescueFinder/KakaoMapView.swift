@@ -1,47 +1,47 @@
 import UIKit
 import CoreLocation
-
-//"0640b95f418fe69e7c7a882c71d17482"
-
+import UserNotifications
 
 class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate, MTMapReverseGeoCoderDelegate {
     
     let Rescue_data = DataLoader().rescue_data
-    
     var mapView: MTMapView!
     var mapPoint1: MTMapPoint?
     var geocoder: MTMapReverseGeoCoder!
-    var forecast: WeatherService!
+    let forecast =  WeatherService()
+    let UserNotificationCenter = UNUserNotificationCenter.current()
     
     public var user_lat: Double = 0     // 사용자 위도, 경도, 위치 주소
     public var user_lng: Double = 0
-    var user_address: String = ""
-    var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
-    
     var currentWeather: Current?
-    var hourWeather: Hourly?
+    var hourWeather: [Hourly]?
+    var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
     var temperature: Double = 0.0
+    var later_time: Int = 0
+    var user_address: String = ""
     var icon: String = ""
-    var hour_weather: String = ""
-    let weatherLabel = UILabel()
-    let weatherImage = UIImageView()
+    var later_weather: String = ""
     
     @IBOutlet var NowLocation: UILabel!
     @IBOutlet var FindBtn: UIButton! // 응급구조함 검색 버튼
     @IBOutlet var TrackBtn: UIButton! // 트래킹 모드 버튼
-    @IBOutlet var WeatherView: UIView!
     @IBOutlet var RainNoticeBtn: UIButton! // 우천 알림 버튼
+    @IBOutlet var WeatherView: UIView!
     @IBOutlet var WeatherImg: UIImageView!
     @IBOutlet var WeatherTemp: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        UserNotificationCenter.delegate = self
+        requestNotificationAuthorization()
+        sendNotification(seconds: 10)
+        
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         } else { print("위치 서비스 off 상태") }
@@ -49,7 +49,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         user_lat = (locationManager.location?.coordinate.latitude)!
         user_lng = (locationManager.location?.coordinate.longitude)!
         
-        let Frame = CGRect(x: 16, y: 164, width: 358, height: 549)
+        let Frame = CGRect(x: 16, y: 164, width: 358, height: 473)
         mapView = MTMapView(frame: Frame)
         if let mapView = mapView {
             // 델리게이트 설정이 여러개가 가능한가?
@@ -69,13 +69,8 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             MakeMarker(number: i, address: rescue_lst[i].address,
                 lat: rescue_lst[i].latitude, lng: rescue_lst[i].longitude) }
         
-        
-        forecast = WeatherService(lat: round(user_lat * 100)/100.0, lng: round(user_lng*100)/100.0)
         fetchWeather()
-        
     }
-    
-    
     
     
     // 최단거리 응급구조함 5개 찾는 함수
@@ -139,19 +134,65 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     
     // 날씨 받아오는 함수.
     func fetchWeather() {
-        forecast.getWeather { result in
+        forecast.getLoc(lat1: user_lat, lng1: user_lng)
+        forecast.getWeather() { result in
             switch result {
                 case.success(let weatherResponse):
                     DispatchQueue.main.async {
                         self.currentWeather = weatherResponse.current
-                        self.WeatherTemp.text = String(self.currentWeather?.temp ?? 0.0)
-                        self.WeatherImg.image = UIImage(named: self.currentWeather?.weather[0].icon ?? "01d")!
+                        self.WeatherTemp.text = "온도: \(self.currentWeather?.temp ?? 0.0)"
+                        var iconstr = (self.currentWeather?.weather[0].icon ?? "01d")!
+                        var iconurl = URL(string: "http://openweathermap.org/img/wn/\(iconstr)@2x.png)")
                         self.hourWeather = weatherResponse.hourly
-                        self.hour_weather = self.hourWeather?.hourly_weather[0].main ?? "데이터 없음" }
-                        print(self.hourWeather)
-                
+                        // later_weather 변수 받는데 오래걸림.
+                        self.later_weather = weatherResponse.hourly[0].weather[0].main
+                        self.later_time = self.hourWeather?[0].dt ?? 0
+//                        URLSession.shared.dataTask(with: iconurl! as URL) { iconData, _, error in
+//                            DispatchQueue.main.async {
+//                                if let iconData = iconData, error == nil {
+//                                    self.WeatherImg.image = UIImage(data: iconData as Data)!
+//                                } else { print("이미지 로드 실패")}
+//                            }
+//                        }
+//                        let imgData = try? Data(contentsOf: iconurl! as URL)
+//                        if imgData != nil {
+//                            self.WeatherImg.image = UIImage(data: imgData! as Data)
+//                        } else {
+//                            print("이미지 로드 실패")
+//                       }
+                    }
                 case .failure(_ ):
                     print("error")
+            }
+        }
+    }
+    
+    
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+
+        UserNotificationCenter.requestAuthorization(options: authOptions) { success, error in
+            if let error = error {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    
+    func sendNotification(seconds: Double) {
+        let notificationContent = UNMutableNotificationContent()
+
+        notificationContent.title = "알림 테스트"
+        notificationContent.body = "이것은 알림을 테스트 하는 것이다"
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+
+        UserNotificationCenter.add(request) { error in
+            if let error = error {
+                print("Notification Error: ", error)
             }
         }
     }
@@ -203,6 +244,20 @@ extension CLLocation {
     }
 }
 
+extension KakaoMapView: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+}
+
 
 struct rescue: Comparable {
     var distance: Double
@@ -214,3 +269,4 @@ struct rescue: Comparable {
         return lhs.distance < rhs.distance
     }
 }
+

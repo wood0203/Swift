@@ -21,7 +21,7 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +33,7 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.from_distance.text = "거리: 약 3km"
         }
         else {
-            cell.Current_add.text = "응급구조함 " + String(indexPath.row + 1)
+            cell.Current_add.text = "응급구조함 \(indexPath.row + 1)"
             cell.from_distance.text = "거리: 약" + String(rescues[indexPath.row].distance) + "km"
             cell.Rescue_add.text = rescues[indexPath.row].address
         }
