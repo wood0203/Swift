@@ -41,12 +41,11 @@ class WeatherService {
     func getLoc(lat1: Double, lng1: Double) {
         cur_lat = lat1
         cur_lng = lng1
-        print("\(cur_lat) \(cur_lng)")
     }
     
     func getWeather(completion: @escaping (Result<WeatherResponse, NetworkError>) -> Void) {
         
-        let request_url = "https://api.openweathermap.org/data/3.0/onecall?lat=\(cur_lat)&lon=\(cur_lng)&exclude=minutely,daily&appid=\(apiKey)"
+        let request_url = "https://api.openweathermap.org/data/3.0/onecall?lat=\(cur_lat)&lon=\(cur_lng)&units=metric&exclude=minutely,daily&appid=\(apiKey)"
         let url = URL(string: request_url)
         
         guard let url = url else {

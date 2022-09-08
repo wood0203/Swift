@@ -1,15 +1,5 @@
 import Foundation
 
-//[
-// {
-//   "FIELD1": "강원도",
-//   "FIELD2": "홍천군",
-//   "FIELD3": "연봉리 계열사 앞",
-//   "FIELD4": "강원도 홍천군 홍천읍 연봉리 262-5",
-//   "FIELD5": "37.68668359999999",
-//   "FIELD6": 127.8782378,
-//   "FIELD7": "2022-07-20"
-// },
 
 struct Rescue : Codable {
     let FIELD1: String      // 도
@@ -21,8 +11,35 @@ struct Rescue : Codable {
     let FIELD7: String      // 데이터 최신화 날짜
 }
 
+struct rescue: Comparable {
+    var distance: Double
+    var address: String
+    var latitude: Double
+    var longitude: Double
+    
+    static func < (lhs: rescue, rhs: rescue) -> Bool {
+        return lhs.distance < rhs.distance
+    }
+}
+
 struct Hospital : Codable {
-    let FIELD1: String
+    let 의료기관명: String
+    let 연락처: String
+    let 소재지도로명주소: String
+    let 경도: Double
+    let 위도: Double
+}
+
+struct hospital: Comparable {
+    var distance: Double
+    var address: String
+    var phone_num: String
+    var latitude: Double
+    var longitude: Double
+    
+    static func < (lhs: hospital, rhs: hospital) -> Bool {
+        return lhs.distance < rhs.distance
+    }
 }
 
 struct WeatherResponse: Decodable {
@@ -45,36 +62,6 @@ struct Weather: Decodable {
 }
 
 struct Hourly: Decodable {
-    let dt: Int
+    let temp: Double
     let weather: [Weather]
 }
-
-
-//var currentWeather: Current?
-//    var temperature: Double = 0.0
-//    var icon: String = ""
-//    let weatherLabel = UILabel()
-//    let weatherImage = UIImageView()
-//    
-//    loadView() / viewDidLoad() 이용해 view를 만들어주고
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        fetchWeather()
-//    }
-//
-//    func fetchWeather() {
-//        WeatherService().getWeather { result in
-//            switch result {
-//            case .success(let weatherResponse):
-//                DispatchQueue.main.async {
-//                    self.currentWeather = weatherResponse.current
-//                    self.temperature = self.currentWeather?.temp ?? 0.0
-//                    self.weatherLabel.text = "temp: \(self.temperature)"
-//                    self.weatherImage.image = UIImage(named: self.currentWeather?.weather[0].icon ?? "01d")
-//                }
-//            case .failure(_ ):
-//                print("error")
-//            }
-//        }
-//    }
-//출처: https://hongssup.tistory.com/33 [Outgoing Introvert:티스토리]

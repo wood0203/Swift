@@ -53,6 +53,7 @@
 		6346890328BB504C00553C03 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883E28BB37AE00553C03 /* KakaoMapView.swift */; };
 		6346890428BB505100553C03 /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883C28BB379800553C03 /* ALLData.swift */; };
 		6353FD3428C227E400FB7247 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353FD3328C227E400FB7247 /* WeatherService.swift */; };
+		63AB31B528CA4F7C00B1E18E /* hopital_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 63AB31B428CA4F7C00B1E18E /* hopital_data.json */; };
 		63B7397828C071B2004BFC54 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7397728C071B2004BFC54 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		634688FA28BB444600553C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../RescueFinder/RescueFinder/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634688FE28BB483E00553C03 /* rescue_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rescue_data.json; sourceTree = "<group>"; };
 		6353FD3328C227E400FB7247 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		63AB31B428CA4F7C00B1E18E /* hopital_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hopital_data.json; sourceTree = "<group>"; };
 		63B7397728C071B2004BFC54 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 		634687D428BB36DE00553C03 /* project */ = {
 			isa = PBXGroup;
 			children = (
+				63AB31B428CA4F7C00B1E18E /* hopital_data.json */,
 				634688FE28BB483E00553C03 /* rescue_data.json */,
 				6346883C28BB379800553C03 /* ALLData.swift */,
 				6346884228BB37F700553C03 /* DataLoader.swift */,
@@ -337,6 +340,7 @@
 				634688EC28BB437B00553C03 /* info_box.png in Resources */,
 				634688FF28BB483E00553C03 /* rescue_data.json in Resources */,
 				634688DE28BB437B00553C03 /* map_pin_custom.png in Resources */,
+				63AB31B528CA4F7C00B1E18E /* hopital_data.json in Resources */,
 				634688E028BB437B00553C03 /* map_pinup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,7 +420,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -478,7 +482,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -508,7 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2F5MZFTY2R;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
@@ -549,7 +553,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2F5MZFTY2R;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",

@@ -4,38 +4,33 @@ import UserNotifications
 
 class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate, MTMapReverseGeoCoderDelegate {
     
-    let Rescue_data = DataLoader().rescue_data
+    let forecast =  WeatherService()
     var mapView: MTMapView!
     var mapPoint1: MTMapPoint?
     var geocoder: MTMapReverseGeoCoder!
-    let forecast =  WeatherService()
-    let UserNotificationCenter = UNUserNotificationCenter.current()
+    let Rescue_data = DataLoader().rescue_data
     
-    public var user_lat: Double = 0     // 사용자 위도, 경도, 위치 주소
-    public var user_lng: Double = 0
+    public var user_lat: Double = 0     // 사용자 위도
+    public var user_lng: Double = 0     // 사용자 경도
     var currentWeather: Current?
-    var hourWeather: [Hourly]?
+    var hourWeather: Hourly?
     var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
-    var temperature: Double = 0.0
-    var later_time: Int = 0
-    var user_address: String = ""
-    var icon: String = ""
-    var later_weather: String = ""
+    var user_address: String = ""       // 현재 주소
+    var temperature: Double = 0.0       // 현재 온도
+    var later_time: Int = 0             // 1시간 뒤 datetime
+    var later_weather: String = ""      // 1시간 뒤 기상
     
     @IBOutlet var NowLocation: UILabel!
     @IBOutlet var FindBtn: UIButton! // 응급구조함 검색 버튼
     @IBOutlet var TrackBtn: UIButton! // 트래킹 모드 버튼
-    @IBOutlet var RainNoticeBtn: UIButton! // 우천 알림 버튼
     @IBOutlet var WeatherView: UIView!
     @IBOutlet var WeatherImg: UIImageView!
     @IBOutlet var WeatherTemp: UILabel!
+    @IBOutlet var WeatherhourImg: UIImageView!
+    @IBOutlet var WeatherhourTemp: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UserNotificationCenter.delegate = self
-        requestNotificationAuthorization()
-        sendNotification(seconds: 10)
         
         let locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -46,8 +41,8 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             locationManager.startUpdatingLocation()
         } else { print("위치 서비스 off 상태") }
         
-        user_lat = (locationManager.location?.coordinate.latitude)!
-        user_lng = (locationManager.location?.coordinate.longitude)!
+        user_lat = (locationManager.location?.coordinate.latitude ?? 0.0)!
+        user_lng = (locationManager.location?.coordinate.longitude ?? 0.0)!
         
         let Frame = CGRect(x: 16, y: 164, width: 358, height: 473)
         mapView = MTMapView(frame: Frame)
@@ -61,15 +56,16 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             self.view.addSubview(mapView)
         }
         
-        // 응급구조함 찾기 실행
-        FindRescue(lat: user_lat, lng: user_lng)
+        // 날씨 데이터 받아오기
+        fetchWeather()
         
-        // 지도에 마커 추가 실행
+        // 응급구조함 찾기 실행 & 마커 추가
+        FindRescue(lat: user_lat, lng: user_lng)
         for i in 0..<5 {
             MakeMarker(number: i, address: rescue_lst[i].address,
                 lat: rescue_lst[i].latitude, lng: rescue_lst[i].longitude) }
         
-        fetchWeather()
+        
     }
     
     
@@ -106,7 +102,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     func MakeMarker(number: Int, address: String, lat: Double, lng: Double) -> MTMapPOIItem {
         
         let Marker = MTMapPOIItem()
-        Marker.itemName = String(number+1) + "번째"
+        Marker.itemName = "\(number+1)번째"
         Marker.tag = number
         Marker.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
             latitude: lat, longitude: lng))
@@ -118,7 +114,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     
     // 현위치 업데이트 메소드
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-        let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: "30d0d841c02f99a1f94f7af2c54bee9f")
+        let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: kakao_apiKey)
         
         self.geocoder = geocoder
         geocoder?.startFindingAddress()
@@ -139,27 +135,15 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             switch result {
                 case.success(let weatherResponse):
                     DispatchQueue.main.async {
+                        // 현재
                         self.currentWeather = weatherResponse.current
+                        self.ConvertImg(Wtimg: self.WeatherImg!, Wtmain: (self.currentWeather?.weather[0].main)!)
                         self.WeatherTemp.text = "온도: \(self.currentWeather?.temp ?? 0.0)"
-                        var iconstr = (self.currentWeather?.weather[0].icon ?? "01d")!
-                        var iconurl = URL(string: "http://openweathermap.org/img/wn/\(iconstr)@2x.png)")
-                        self.hourWeather = weatherResponse.hourly
-                        // later_weather 변수 받는데 오래걸림.
-                        self.later_weather = weatherResponse.hourly[0].weather[0].main
-                        self.later_time = self.hourWeather?[0].dt ?? 0
-//                        URLSession.shared.dataTask(with: iconurl! as URL) { iconData, _, error in
-//                            DispatchQueue.main.async {
-//                                if let iconData = iconData, error == nil {
-//                                    self.WeatherImg.image = UIImage(data: iconData as Data)!
-//                                } else { print("이미지 로드 실패")}
-//                            }
-//                        }
-//                        let imgData = try? Data(contentsOf: iconurl! as URL)
-//                        if imgData != nil {
-//                            self.WeatherImg.image = UIImage(data: imgData! as Data)
-//                        } else {
-//                            print("이미지 로드 실패")
-//                       }
+                        // 1시간 뒤
+                        self.hourWeather = weatherResponse.hourly[0]
+                        self.ConvertImg(Wtimg: self.WeatherhourImg!, Wtmain: (self.hourWeather?.weather[0].main)!)
+                        self.WeatherhourTemp.text = "온도: \(self.hourWeather?.temp ?? 0.0)"
+                        
                     }
                 case .failure(_ ):
                     print("error")
@@ -168,32 +152,22 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     }
     
     
-    func requestNotificationAuthorization() {
-        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-
-        UserNotificationCenter.requestAuthorization(options: authOptions) { success, error in
-            if let error = error {
-                print("Error: \(error)")
-            }
-        }
-    }
-    
-    
-    func sendNotification(seconds: Double) {
-        let notificationContent = UNMutableNotificationContent()
-
-        notificationContent.title = "알림 테스트"
-        notificationContent.body = "이것은 알림을 테스트 하는 것이다"
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification",
-                                            content: notificationContent,
-                                            trigger: trigger)
-
-        UserNotificationCenter.add(request) { error in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
+    func ConvertImg(Wtimg: UIImageView!, Wtmain: String) {
+        switch Wtmain {
+        case "Thunderstorm":
+            Wtimg.image = UIImage(systemName: "cloud.bolt.fill")
+        case "drizzle":
+            Wtimg.image = UIImage(systemName: "cloud.drizzle.fill")
+        case "snow":
+            Wtimg.image = UIImage(systemName: "cloud.snow.fill")
+        case "Clear":
+            Wtimg.image = UIImage(systemName: "sun.max.fill")
+        case "Clouds":
+            Wtimg.image = UIImage(systemName: "cloud.fill")
+        case "Rain":
+            Wtimg.image = UIImage(systemName: "cloud.rain.fill")
+        default:
+            Wtimg.image = UIImage(systemName: "questionmark.circle.fill")
         }
     }
     
@@ -243,30 +217,3 @@ extension CLLocation {
         return from.distance(from: to)
     }
 }
-
-extension KakaoMapView: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
-    }
-}
-
-
-struct rescue: Comparable {
-    var distance: Double
-    var address: String
-    var latitude: Double
-    var longitude: Double
-    
-    static func < (lhs: rescue, rhs: rescue) -> Bool {
-        return lhs.distance < rhs.distance
-    }
-}
-
