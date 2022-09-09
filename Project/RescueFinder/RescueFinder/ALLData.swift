@@ -30,16 +30,13 @@ struct Hospital : Codable {
     let 위도: Double
 }
 
-struct hospital: Comparable {
-    var distance: Double
-    var address: String
-    var phone_num: String
-    var latitude: Double
-    var longitude: Double
-    
-    static func < (lhs: hospital, rhs: hospital) -> Bool {
-        return lhs.distance < rhs.distance
-    }
+struct hospital: Codable {
+    var distance: Double = 0.0
+    var address: String = ""
+    var phone_num: String = ""
+    var name: String = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 }
 
 struct WeatherResponse: Decodable {

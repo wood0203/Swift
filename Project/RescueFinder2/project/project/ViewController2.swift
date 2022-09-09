@@ -12,16 +12,16 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     let VC1 = KakaoMapView()
     var rescues: [rescue] = []
+    var hospitals: hospital!
     var usr_lat: Double = 0
     var usr_lng: Double = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,10 +29,10 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
              return UITableViewCell()
          }
         if indexPath.row == 5 {
-            cell.Current_add.text = "병원"
-            cell.from_distance.text = "거리: 약 3km"
-        }
-        else {
+            cell.Current_add.text = hospitals.name
+            cell.from_distance.text = "거리: 약 \(hospitals.distance)km"
+            cell.Rescue_add.text = hospitals.address
+        } else {
             cell.Current_add.text = "응급구조함 \(indexPath.row + 1)"
             cell.from_distance.text = "거리: 약" + String(rescues[indexPath.row].distance) + "km"
             cell.Rescue_add.text = rescues[indexPath.row].address
@@ -49,9 +49,16 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             //테이블뷰의 이벤트처리 함수
         var user_url = String(usr_lat) + "," + String(usr_lng)
-        var rescue_url = String(rescues[indexPath.row].latitude) + "," + String(rescues[indexPath.row].longitude)
-        var total_url = "kakaomap://route?sp=" + user_url + "&ep=" + rescue_url + "&by=FOOT"
-        
+        var destin_url: String = ""
+        var total_url: String = ""
+        if indexPath.row != 5 {
+            destin_url = String(rescues[indexPath.row].latitude) + "," + String(rescues[indexPath.row].longitude)
+            total_url = "kakaomap://route?sp=" + user_url + "&ep=" + destin_url + "&by=FOOT"
+        } else {
+            destin_url = String(hospitals.latitude) + "," + String(hospitals.longitude)
+            total_url = "kakaomap://route?sp=" + user_url + "&ep=" + destin_url + "&by=FOOT"
+        }
+        print(total_url)
         if let openApp = URL(string: total_url), UIApplication.shared.canOpenURL(openApp) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil) }

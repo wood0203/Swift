@@ -46,6 +46,7 @@ class WeatherService {
     func getWeather(completion: @escaping (Result<WeatherResponse, NetworkError>) -> Void) {
         
         let request_url = "https://api.openweathermap.org/data/3.0/onecall?lat=\(cur_lat)&lon=\(cur_lng)&units=metric&exclude=minutely,daily&appid=\(apiKey)"
+        print(request_url)
         let url = URL(string: request_url)
         
         guard let url = url else {

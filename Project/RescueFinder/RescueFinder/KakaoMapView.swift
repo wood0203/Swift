@@ -9,12 +9,14 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     var mapPoint1: MTMapPoint?
     var geocoder: MTMapReverseGeoCoder!
     let Rescue_data = DataLoader().rescue_data
+    let Hospital_data = DataLoader().hospital_data
     
     public var user_lat: Double = 0     // 사용자 위도
     public var user_lng: Double = 0     // 사용자 경도
     var currentWeather: Current?
     var hourWeather: Hourly?
     var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
+    var hospital_info = hospital()
     var user_address: String = ""       // 현재 주소
     var temperature: Double = 0.0       // 현재 온도
     var later_time: Int = 0             // 1시간 뒤 datetime
@@ -44,7 +46,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         user_lat = (locationManager.location?.coordinate.latitude ?? 0.0)!
         user_lng = (locationManager.location?.coordinate.longitude ?? 0.0)!
         
-        let Frame = CGRect(x: 16, y: 164, width: 358, height: 473)
+        let Frame = CGRect(x: 16, y: 195, width: 358, height: 473)
         mapView = MTMapView(frame: Frame)
         if let mapView = mapView {
             // 델리게이트 설정이 여러개가 가능한가?
@@ -65,7 +67,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             MakeMarker(number: i, address: rescue_lst[i].address,
                 lat: rescue_lst[i].latitude, lng: rescue_lst[i].longitude) }
         
-        
+        FindHospital(lat: user_lat, lng: user_lng)
     }
     
     
@@ -94,6 +96,30 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
         
         arr.sort()
         rescue_lst.append(contentsOf: arr[0...4])
+    }
+    
+    
+    func FindHospital(lat: Double, lng: Double) {
+        var result = 1000000000.0
+        var temp: Int = 0
+        for idx1 in 0..<Hospital_data.count {
+            var hospital_lat = Hospital_data[idx1].위도
+            var hospital_lng = Hospital_data[idx1].경도
+            var dist1 = CLLocation.distance(
+                from: CLLocationCoordinate2D(latitude: lat, longitude: lng),
+                to: CLLocationCoordinate2D(latitude: hospital_lat, longitude: hospital_lng))
+            
+            if Double(dist1) < result {
+                result = dist1
+                temp = idx1 }
+        }
+        
+        hospital_info.distance = round((result/1000.0) * 100) / 100.0
+        hospital_info.address = Hospital_data[temp].소재지도로명주소
+        hospital_info.phone_num = Hospital_data[temp].연락처
+        hospital_info.name = Hospital_data[temp].의료기관명
+        hospital_info.latitude = Hospital_data[temp].위도
+        hospital_info.longitude = Hospital_data[temp].경도
     }
     
     
@@ -166,7 +192,12 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
             Wtimg.image = UIImage(systemName: "cloud.fill")
         case "Rain":
             Wtimg.image = UIImage(systemName: "cloud.rain.fill")
+        case "fog":
+            Wtimg.image = UIImage(systemName: "cloud.fog.fill")
+        case "haze":
+            Wtimg.image = UIImage(systemName: "sun.haze.fill")
         default:
+            print(Wtmain)
             Wtimg.image = UIImage(systemName: "questionmark.circle.fill")
         }
     }
@@ -176,6 +207,7 @@ class KakaoMapView: UIViewController, CLLocationManagerDelegate, MTMapViewDelega
     @IBAction func NaviStart(_ sender: Any) {
         
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as? ViewController2 else {return }
+        vc.hospitals = hospital_info
         vc.rescues = rescue_lst
         vc.usr_lat = user_lat
         vc.usr_lng = user_lng

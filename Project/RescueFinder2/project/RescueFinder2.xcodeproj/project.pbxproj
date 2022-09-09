@@ -53,7 +53,7 @@
 		6346890328BB504C00553C03 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883E28BB37AE00553C03 /* KakaoMapView.swift */; };
 		6346890428BB505100553C03 /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883C28BB379800553C03 /* ALLData.swift */; };
 		6353FD3428C227E400FB7247 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353FD3328C227E400FB7247 /* WeatherService.swift */; };
-		63AB31B528CA4F7C00B1E18E /* hopital_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 63AB31B428CA4F7C00B1E18E /* hopital_data.json */; };
+		639B0BF828CB0ABE00520150 /* hospital_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 639B0BF728CB0ABE00520150 /* hospital_data.json */; };
 		63B7397828C071B2004BFC54 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7397728C071B2004BFC54 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,7 +115,7 @@
 		634688FA28BB444600553C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../RescueFinder/RescueFinder/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634688FE28BB483E00553C03 /* rescue_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rescue_data.json; sourceTree = "<group>"; };
 		6353FD3328C227E400FB7247 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		63AB31B428CA4F7C00B1E18E /* hopital_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hopital_data.json; sourceTree = "<group>"; };
+		639B0BF728CB0ABE00520150 /* hospital_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hospital_data.json; sourceTree = "<group>"; };
 		63B7397728C071B2004BFC54 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +161,7 @@
 		634687D428BB36DE00553C03 /* project */ = {
 			isa = PBXGroup;
 			children = (
-				63AB31B428CA4F7C00B1E18E /* hopital_data.json */,
+				639B0BF728CB0ABE00520150 /* hospital_data.json */,
 				634688FE28BB483E00553C03 /* rescue_data.json */,
 				6346883C28BB379800553C03 /* ALLData.swift */,
 				6346884228BB37F700553C03 /* DataLoader.swift */,
@@ -325,6 +325,7 @@
 				634688E228BB437B00553C03 /* map_pin_custom@3x.png in Resources */,
 				6327590328C49B83007F35CF /* Property List.plist in Resources */,
 				634688E628BB437B00553C03 /* th_line.png in Resources */,
+				639B0BF828CB0ABE00520150 /* hospital_data.json in Resources */,
 				634688EE28BB437B00553C03 /* map_pinup_custom.png in Resources */,
 				6346884628BB387A00553C03 /* Main.storyboard in Resources */,
 				634688F628BB437B00553C03 /* daum_th_line.png in Resources */,
@@ -340,7 +341,6 @@
 				634688EC28BB437B00553C03 /* info_box.png in Resources */,
 				634688FF28BB483E00553C03 /* rescue_data.json in Resources */,
 				634688DE28BB437B00553C03 /* map_pin_custom.png in Resources */,
-				63AB31B528CA4F7C00B1E18E /* hopital_data.json in Resources */,
 				634688E028BB437B00553C03 /* map_pinup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
