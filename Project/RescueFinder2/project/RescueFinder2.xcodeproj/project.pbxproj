@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630ED92428D1A51800684C0D /* KakaoMapView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630ED92328D1A51800684C0D /* KakaoMapView2.swift */; };
+		630ED92628D1D60800684C0D /* hospital_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 630ED92528D1D60800684C0D /* hospital_data.json */; };
+		632453E328D06FB900124ABD /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632453E228D06FB900124ABD /* ALLData.swift */; };
 		6327590328C49B83007F35CF /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6327590228C49B83007F35CF /* Property List.plist */; };
 		634687DF28BB36DF00553C03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634687DE28BB36DF00553C03 /* Assets.xcassets */; };
 		6346882F28BB375800553C03 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6346882E28BB375800553C03 /* Metal.framework */; };
@@ -50,14 +53,14 @@
 		6346890028BB503900553C03 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346884228BB37F700553C03 /* DataLoader.swift */; };
 		6346890128BB503F00553C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634687D528BB36DE00553C03 /* AppDelegate.swift */; };
 		6346890228BB504500553C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634687D728BB36DE00553C03 /* SceneDelegate.swift */; };
-		6346890328BB504C00553C03 /* KakaoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883E28BB37AE00553C03 /* KakaoMapView.swift */; };
-		6346890428BB505100553C03 /* ALLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346883C28BB379800553C03 /* ALLData.swift */; };
 		6353FD3428C227E400FB7247 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353FD3328C227E400FB7247 /* WeatherService.swift */; };
-		639B0BF828CB0ABE00520150 /* hospital_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 639B0BF728CB0ABE00520150 /* hospital_data.json */; };
 		63B7397828C071B2004BFC54 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7397728C071B2004BFC54 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630ED92328D1A51800684C0D /* KakaoMapView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoMapView2.swift; path = ../../../RescueFinder/RescueFinder/KakaoMapView2.swift; sourceTree = "<group>"; };
+		630ED92528D1D60800684C0D /* hospital_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = hospital_data.json; path = ../../../../../../../Downloads/hospital_data.json; sourceTree = "<group>"; };
+		632453E228D06FB900124ABD /* ALLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLData.swift; sourceTree = "<group>"; };
 		6327590228C49B83007F35CF /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		634687D228BB36DE00553C03 /* RescueFinder2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RescueFinder2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		634687D528BB36DE00553C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,8 +74,6 @@
 		6346883628BB377100553C03 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		6346883828BB377700553C03 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		6346883A28BB377E00553C03 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		6346883C28BB379800553C03 /* ALLData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ALLData.swift; path = ../../../RescueFinder/RescueFinder/ALLData.swift; sourceTree = "<group>"; };
-		6346883E28BB37AE00553C03 /* KakaoMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoMapView.swift; path = ../../../RescueFinder/RescueFinder/KakaoMapView.swift; sourceTree = "<group>"; };
 		6346884228BB37F700553C03 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataLoader.swift; path = ../../../RescueFinder/RescueFinder/DataLoader.swift; sourceTree = "<group>"; };
 		6346884528BB387A00553C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../RescueFinder/RescueFinder/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6346884728BB3C1300553C03 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Header.h; path = ../Header.h; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		634688FA28BB444600553C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../RescueFinder/RescueFinder/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634688FE28BB483E00553C03 /* rescue_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rescue_data.json; sourceTree = "<group>"; };
 		6353FD3328C227E400FB7247 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		639B0BF728CB0ABE00520150 /* hospital_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hospital_data.json; sourceTree = "<group>"; };
 		63B7397728C071B2004BFC54 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,14 +161,14 @@
 		634687D428BB36DE00553C03 /* project */ = {
 			isa = PBXGroup;
 			children = (
-				639B0BF728CB0ABE00520150 /* hospital_data.json */,
+				630ED92528D1D60800684C0D /* hospital_data.json */,
 				634688FE28BB483E00553C03 /* rescue_data.json */,
-				6346883C28BB379800553C03 /* ALLData.swift */,
+				632453E228D06FB900124ABD /* ALLData.swift */,
 				6346884228BB37F700553C03 /* DataLoader.swift */,
 				6353FD3328C227E400FB7247 /* WeatherService.swift */,
 				634687D528BB36DE00553C03 /* AppDelegate.swift */,
 				634687D728BB36DE00553C03 /* SceneDelegate.swift */,
-				6346883E28BB37AE00553C03 /* KakaoMapView.swift */,
+				630ED92328D1A51800684C0D /* KakaoMapView2.swift */,
 				63B7397728C071B2004BFC54 /* ViewController2.swift */,
 				6346884428BB387A00553C03 /* Main.storyboard */,
 				634688F928BB444600553C03 /* LaunchScreen.storyboard */,
@@ -325,7 +325,7 @@
 				634688E228BB437B00553C03 /* map_pin_custom@3x.png in Resources */,
 				6327590328C49B83007F35CF /* Property List.plist in Resources */,
 				634688E628BB437B00553C03 /* th_line.png in Resources */,
-				639B0BF828CB0ABE00520150 /* hospital_data.json in Resources */,
+				630ED92628D1D60800684C0D /* hospital_data.json in Resources */,
 				634688EE28BB437B00553C03 /* map_pinup_custom.png in Resources */,
 				6346884628BB387A00553C03 /* Main.storyboard in Resources */,
 				634688F628BB437B00553C03 /* daum_th_line.png in Resources */,
@@ -352,8 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6346890428BB505100553C03 /* ALLData.swift in Sources */,
-				6346890328BB504C00553C03 /* KakaoMapView.swift in Sources */,
+				630ED92428D1A51800684C0D /* KakaoMapView2.swift in Sources */,
+				632453E328D06FB900124ABD /* ALLData.swift in Sources */,
 				6346890228BB504500553C03 /* SceneDelegate.swift in Sources */,
 				6346890128BB503F00553C03 /* AppDelegate.swift in Sources */,
 				6346890028BB503900553C03 /* DataLoader.swift in Sources */,
