@@ -40,6 +40,8 @@ Temporary Items
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 Info.plist
 Property List.plist
+hospital_data.json
+rescue_data.json
 
 ## User settings
 xcuserdata/
