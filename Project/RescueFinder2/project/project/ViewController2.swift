@@ -11,11 +11,11 @@ import MapKit
 
 class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let Geocoder = CLGeocoder()
-    let VC1 = KakaoMapView2()
     var rescues: [rescue] = []
     var hospitals: [hospital] = []
     var isRescue = true
+    var usr_lat = 0.0
+    var usr_lng = 0.0
     
     @IBOutlet var NowLocation: UILabel!
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             //테이블뷰의 이벤트처리 함수
-        var user_url = "\(user_lat),\(user_lng)"
+        var user_url = "\(usr_lat),\(usr_lng)"
         var destin_url: String = ""
         var total_url: String = ""
         if isRescue {

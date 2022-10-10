@@ -1,6 +1,11 @@
 import Foundation
 
 
+struct AllData : Codable {
+    let rescue_dict: [Rescue]
+    let hospital_dict: [Hospital]
+}
+
 struct Rescue : Codable {
     let FIELD1: String      // 도
     let FIELD2: String      // 시군구

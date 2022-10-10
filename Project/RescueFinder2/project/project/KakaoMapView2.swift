@@ -1,6 +1,5 @@
 import UIKit
 import CoreLocation
-import UserNotifications
 
 class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
     
@@ -8,17 +7,16 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
     let Rescue_data = DataLoader().rescue_data
     let Hospital_data = DataLoader().hospital_data
     
-    public let locationManager = CLLocationManager()
     public var user_lat: Double = 0     // 사용자 위도
     public var user_lng: Double = 0     // 사용자 경도
+    let locationManager = CLLocationManager()
+    let geoCoder = CLGeocoder()
     var currentWeather: Current?
     var NextWeather: [Hourly] = []      // 1시간 단위 데이터 배열
     var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
     var hospital_lst: [hospital] = []   // 최단거리 병원 배열
     
     @IBOutlet var NowLocation: UILabel! // 현재 위치 가르쳐줌
-    @IBOutlet var FindBtn: UIButton!    // 응급구조함 검색 버튼
-    @IBOutlet var TrackBtn: UIButton!   // 트래킹 모드 버튼
     @IBOutlet var WeatherView: UIView!
     @IBOutlet var WeatherImg: UIImageView!
     @IBOutlet var WeatherTemp: UILabel!
@@ -49,6 +47,10 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
         
         user_lat = (locationManager.location?.coordinate.latitude ?? 0.0)!
         user_lng = (locationManager.location?.coordinate.longitude ?? 0.0)!
+        let location = CLLocation(latitude: user_lat, longitude: user_lng)
+        let locale = Locale(identifier: "Ko-kr")
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) {placemarks, error in
+            guard let placemarks = placemarks, let address = placemarks.first else { reutrn }
         
         //          지도 구현 **** 삭제
         //        let Frame = CGRect(x: 16, y: 205, width: 358, height: 473)
@@ -148,18 +150,18 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
 //    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let coor = manager.location?.coordinate {
+        guard let coor = locations. {
             user_lat = coor.latitude
             user_lng = coor.longitude
         }
     }
+    
         
     // 트래킹모드에서 받아온 위도 경도 기반 주소 출력 메소드
-    func mtMapReverseGeoCoder(_ rGeoCoder: MTMapReverseGeoCoder!, foundAddress addressString: String!) {
-        guard let addressString = addressString else { return }
-        NowLocation.text = addressString
-    }
-        
+//    func mtMapReverseGeoCoder(_ rGeoCoder: MTMapReverseGeoCoder!, foundAddress addressString: String!) {
+//        guard let addressString = addressString else { return }
+//        NowLocation.text = addressString
+//    }
         
     // 날씨 받아오는 함수.
     func fetchWeather() {
