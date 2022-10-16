@@ -1,7 +1,7 @@
 import UIKit
 import CoreLocation
 
-class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
+class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate {
     
     let forecast =  WeatherService()
     let Rescue_data = DataLoader().rescue_data
@@ -11,6 +11,7 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
     public var user_lng: Double = 0     // 사용자 경도
     let locationManager = CLLocationManager()
     let geoCoder = CLGeocoder()
+    var mapView: MTMapView!
     var currentWeather: Current?
     var NextWeather: [Hourly] = []      // 1시간 단위 데이터 배열
     var rescue_lst: [rescue] = []       // 최단거리 5개 응급구조함 배열
@@ -49,21 +50,16 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
         user_lng = (locationManager.location?.coordinate.longitude ?? 0.0)!
         let location = CLLocation(latitude: user_lat, longitude: user_lng)
         let locale = Locale(identifier: "Ko-kr")
-        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) {placemarks, error in
-            guard let placemarks = placemarks, let address = placemarks.first else { reutrn }
         
-        //          지도 구현 **** 삭제
-        //        let Frame = CGRect(x: 16, y: 205, width: 358, height: 473)
-        //        mapView = MTMapView(frame: Frame)
-        //        if let mapView = mapView {
-        //            // 델리게이트 설정이 여러개가 가능한가?
-        //            mapView.delegate = self
-        //            mapView.baseMapType = .standard
-        //            mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
-        //                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: false)
-        //
-        //            self.view.addSubview(mapView)
-        //        }
+        let Frame = CGRect(x: 16, y: 205, width: 358, height: 473)
+        mapView = MTMapView(frame: Frame)
+        if let mapView = mapView {
+            mapView.delegate = self
+            mapView.baseMapType = .standard
+            mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
+                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: false)
+            self.view.addSubview(mapView)
+        }
         
         // 날씨 데이터 받아오기
         fetchWeather()
@@ -150,12 +146,10 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate {
 //    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let coor = locations. {
-            user_lat = coor.latitude
-            user_lng = coor.longitude
-        }
+        guard let coor = locations.first else { return  }
+        user_lat = coor.coordinate.latitude
+        user_lng = coor.coordinate.longitude
     }
-    
         
     // 트래킹모드에서 받아온 위도 경도 기반 주소 출력 메소드
 //    func mtMapReverseGeoCoder(_ rGeoCoder: MTMapReverseGeoCoder!, foundAddress addressString: String!) {
