@@ -1,7 +1,7 @@
 import UIKit
 import CoreLocation
 
-class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate {
+class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDelegate, MTMapReverseGeoCoderDelegate {
     
     let forecast =  WeatherService()
     let Rescue_data = DataLoader().rescue_data
@@ -10,7 +10,7 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
     public var user_lat: Double = 0     // 사용자 위도
     public var user_lng: Double = 0     // 사용자 경도
     let locationManager = CLLocationManager()
-    let geoCoder = CLGeocoder()
+    var geocoder: MTMapReverseGeoCoder!
     var mapView: MTMapView!
     var currentWeather: Current?
     var NextWeather: [Hourly] = []      // 1시간 단위 데이터 배열
@@ -48,25 +48,9 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
         
         user_lat = (locationManager.location?.coordinate.latitude ?? 0.0)!
         user_lng = (locationManager.location?.coordinate.longitude ?? 0.0)!
-        let location = CLLocation(latitude: user_lat, longitude: user_lng)
-        let locale = Locale(identifier: "Ko-kr")
-        
-        let Frame = CGRect(x: 16, y: 205, width: 358, height: 473)
-        mapView = MTMapView(frame: Frame)
-        if let mapView = mapView {
-            mapView.delegate = self
-            mapView.baseMapType = .standard
-            mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
-                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: false)
-            self.view.addSubview(mapView)
-        }
         
         // 날씨 데이터 받아오기
         fetchWeather()
-        
-        // 응급구조함/병원 찾기 & 데이터저장
-        FindRescue(lat: user_lat, lng: user_lng)
-        FindHospital(lat: user_lat, lng: user_lng)
         
     }
     
@@ -116,34 +100,34 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
         hospital_lst.append(contentsOf: arr2[0...4])
     }
     
-    // 지도에 마커추가 함수 **** 삭제
-    // 추가 기능 구현 아이디어 : 마커 클릭시 해당 위치 비치된 응급구조함 사진 출력?
-    //    func MakeMarker(number: Int, address: String, lat: Double, lng: Double) -> MTMapPOIItem {
-    //
-    //        let Marker = MTMapPOIItem()
-    //        if number < 5 {
-    //            Marker.itemName = "응급구조함 \(number+1)"
-    //            Marker.markerType = .redPin }
-    //        else {
-    //            Marker.itemName = "\(hospital_lst[number-5].name)"
-    //            Marker.markerType = .yellowPin }
-    //        Marker.tag = number
-    //        Marker.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
-    //            latitude: lat, longitude: lng))
-    //        mapView.addPOIItems([Marker])
-    //
-    //        return Marker
-    //    }
+//     지도에 마커추가 함수 **** 삭제
+//     추가 기능 구현 아이디어 : 마커 클릭시 해당 위치 비치된 응급구조함 사진 출력?
+        func MakeMarker(number: Int, address: String, lat: Double, lng: Double) -> MTMapPOIItem {
     
-//    // 현위치 업데이트 메소드
-//    func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-//        if location != MTMapPoint(geoCoord: MTMapPointGeo(latitude: user_lat, longitude: user_lng)) {
-//            let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: kakao_apiKey)
-//
-//            self.geocoder = geocoder
-//            geocoder?.startFindingAddress()
-//        }
-//    }
+            let Marker = MTMapPOIItem()
+            if number < 5 {
+                Marker.itemName = "응급구조함 \(number+1)"
+                Marker.markerType = .redPin }
+            else {
+                Marker.itemName = "\(hospital_lst[number-5].name)"
+                Marker.markerType = .yellowPin }
+            Marker.tag = number
+            Marker.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(
+                latitude: lat, longitude: lng))
+            mapView.addPOIItems([Marker])
+    
+            return Marker
+        }
+    
+    // 현위치 업데이트 메소드
+    func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
+        if location != MTMapPoint(geoCoord: MTMapPointGeo(latitude: user_lat, longitude: user_lng)) {
+            guard let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: kakao_apiKey) else { print("Reverse-geocode 실패") }
+
+            self.geocoder? = geocoder
+            geocoder.startFindingAddress()
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coor = locations.first else { return  }
@@ -152,10 +136,10 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
     }
         
     // 트래킹모드에서 받아온 위도 경도 기반 주소 출력 메소드
-//    func mtMapReverseGeoCoder(_ rGeoCoder: MTMapReverseGeoCoder!, foundAddress addressString: String!) {
-//        guard let addressString = addressString else { return }
-//        NowLocation.text = addressString
-//    }
+    func mtMapReverseGeoCoder(_ rGeoCoder: MTMapReverseGeoCoder!, foundAddress addressString: String!) {
+        guard let addressString = addressString else { return }
+        NowLocation.text = addressString
+    }
         
     // 날씨 받아오는 함수.
     func fetchWeather() {
@@ -244,19 +228,9 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
         return uvistr
     }
     
-    //    // 응급구조함 찾기 버튼 함수
-    //    @IBAction func NaviStart(_ sender: Any) {
-    //
-    //        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as? ViewController2 else {return }
-    //        vc.hospitals = hospital_lst
-    //        vc.rescues = rescue_lst
-    //        vc.usr_lat = user_lat
-    //        vc.usr_lng = user_lng
-    //
-    //        self.present(vc, animated: true, completion: nil)
-    //    }
-    
     @IBAction func ShowRescue(_ sender: Any) {
+        FindRescue(lat: user_lat, lng: user_lng)
+        
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as? ViewController2 else {return }
         vc.rescues = rescue_lst
         vc.usr_lat = user_lat
@@ -266,6 +240,8 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
     }
     
     @IBAction func ShowHospital(_ sender: Any) {
+        FindHospital(lat: user_lat, lng: user_lng)
+        
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as? ViewController2 else {return }
         vc.hospitals = hospital_lst
         vc.usr_lat = user_lat
@@ -275,29 +251,6 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
         self.present(vc, animated: true, completion: nil)
     }
         
-        //    // 현위치 트래킹 모드 버튼 함수
-        //    @IBAction func TrackStart(_ sender: UIButton) {
-        //        // 선택이 되어있지 않은 상태에서 클릭이 됬으므로
-        //        // on 버튼은 조건에 !를 붙여줘야함.
-        //        if !sender.isSelected {
-        //            mapView.currentLocationTrackingMode = .onWithoutHeading
-        //            mapView.showCurrentLocationMarker = true
-        //
-        //            TrackBtn.tintColor = UIColor(red: 108/255, green: 189/255, blue: 249/255, alpha: 1)
-        //            // isselected를 true로 바꿔줌으로써 다시 클릭될때
-        //            // else를 실행할수 있게 해줌.
-        //            sender.isSelected = true
-        //
-        //        } else {
-        //            mapView.currentLocationTrackingMode = .off
-        //            mapView.showCurrentLocationMarker = false
-        //            mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(
-        //                latitude: user_lat, longitude: user_lng)), zoomLevel: 7, animated: true)
-        //
-        //            TrackBtn.tintColor = UIColor.blue
-        //            sender.isSelected = false
-        //        }
-        //    }
 }
 
 // 좌표간 거리계산 메소드

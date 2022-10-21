@@ -32,3 +32,21 @@ public class DataLoader {
         }
     }
 }
+
+public var kakao_apiKey: String {
+         get {
+             // 생성한 .plist 파일 경로 불러오기
+             guard let filePath = Bundle.main.path(forResource: "Property List", ofType: "plist") else {
+                 fatalError("Couldn't find file 'Property List.plist'.")
+             }
+
+             // .plist를 딕셔너리로 받아오기
+             let plist = NSDictionary(contentsOfFile: filePath)
+
+             // 딕셔너리에서 값 찾기
+             guard let value = plist?.object(forKey: "KAKAOMAP_KEY") as? String else {
+                 fatalError("Couldn't find key 'KAKAOMAP_KEY' in 'KeyList.plist'.")
+             }
+             return value
+         }
+     }
