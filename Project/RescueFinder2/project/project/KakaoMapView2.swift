@@ -122,7 +122,10 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
     // 현위치 업데이트 메소드
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         if location != MTMapPoint(geoCoord: MTMapPointGeo(latitude: user_lat, longitude: user_lng)) {
-            guard let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: kakao_apiKey) else { print("Reverse-geocode 실패") }
+            guard let geocoder = MTMapReverseGeoCoder(mapPoint: location, with: self, withOpenAPIKey: kakao_apiKey) else {
+                print("Reverse-geocode 실패")
+                return 
+            }
 
             self.geocoder? = geocoder
             geocoder.startFindingAddress()

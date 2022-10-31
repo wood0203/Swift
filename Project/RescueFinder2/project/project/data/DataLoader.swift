@@ -5,10 +5,12 @@ public class DataLoader {
     
     @Published var rescue_data = [Rescue]()
     @Published var hospital_data = [Hospital]()
+    @Published var valley_data = [Valley]()
     
     init() {
         load(filename: "rescue_data")
         load(filename: "hospital_data")
+        load(filename: "Valley_data")
     }
     
     func load(filename: String) {

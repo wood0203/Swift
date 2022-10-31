@@ -26,24 +26,24 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return
+        return 3
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ValleyCell", for: indexPath) as? ValleyCell else { return UITableViewCell() }
         
-        cell.name.text =
-        cell.Opened.text =
-        cell.OpenTime.text =
-        cell.Tel.text =
-        cell.risk.text =
-        cell.depth.text =
+//        cell.name.text =
+//        cell.Opened.text =
+//        cell.OpenTime.text =
+//        cell.Tel.text =
+//        cell.risk.text =
+//        cell.depth.text =
 
         return cell
     }

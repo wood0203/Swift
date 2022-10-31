@@ -48,6 +48,23 @@ struct hospital: Comparable {
     }
 }
 
+struct Valley : Codable {
+    let circuit:[valley]
+}
+
+struct valley: Comparable {
+    static func < (lhs: valley, rhs: valley) -> Bool {
+        return lhs.distance < rhs.distance
+    }
+    
+    var distance: Double
+    var name:String
+    var address:String
+    var tel:String
+    var opentime:String
+    var parking:String
+}
+
 struct WeatherResponse: Decodable {
     let timezone: String
     let current: Current
