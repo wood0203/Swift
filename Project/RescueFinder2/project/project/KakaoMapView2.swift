@@ -6,6 +6,7 @@ class KakaoMapView2: UIViewController, CLLocationManagerDelegate, MTMapViewDeleg
     let forecast =  WeatherService()
     let Rescue_data = DataLoader().rescue_data
     let Hospital_data = DataLoader().hospital_data
+//    let Valley_data = DataLoader().valley_data
     
     public var user_lat: Double = 0     // 사용자 위도
     public var user_lng: Double = 0     // 사용자 경도
